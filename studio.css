@@ -62,7 +62,7 @@ body{font-family:'Inter Tight',Arial,sans-serif;background:var(--bg);color:var(-
 .studio-home .about-copy{margin-top:36px;max-width:64ch}
 .studio-home .about-copy p:not(.about-lead){font-size:16px;line-height:1.8;color:var(--muted)}
 .studio-home .about-copy .about-lead{font-size:22px;line-height:1.45;letter-spacing:-.02em;margin-bottom:24px}
-.studio-home .about-facts{display:grid;grid-template-columns:1fr 1fr;gap:25px; margin-top:35px;padding-top:25px;border-top:1px solid var(--line)}
+.studio-home .about-facts{display:grid;grid-template-columns:1fr 1fr;gap:25px; margin-top:35px;padding:25px 0 0;border:0;border-top:1px solid var(--line);border-radius:0;background:transparent}
 .studio-home .about-facts>div{border:0;background:none;border-radius:0;padding:0}.studio-home .about-facts p{font-size:15px;line-height:1.6}.studio-home .about-facts .label{font-size:9px}
 .studio-home .capabilities{padding-top:30px;grid-template-columns:.7fr 1.3fr;gap:var(--layout-gap)}
 .studio-home .cap-heading h2{font-size:clamp(35px,4vw,58px);font-weight:500;line-height:1.04;letter-spacing:-.04em}

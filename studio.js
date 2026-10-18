@@ -48,7 +48,7 @@
     const top=parseFloat(getComputedStyle(hero).getPropertyValue('--header-height'))||85;
     const range=Math.max(1,hero.offsetHeight-stage.clientHeight);
     const progress=motion?clamp((top-hero.getBoundingClientRect().top)/range):0;
-    const open=ease(.08,.9,progress),exit=ease(.08,.38,progress);
+    const open=ease(.08,.9,progress),exit=ease(.1,.6,progress);
     const g=geometry;
     pane.style.left=mix(g.x,g.gutter,open).toFixed(2)+'px';
     pane.style.top=mix(g.y,g.h*.07,open).toFixed(2)+'px';
