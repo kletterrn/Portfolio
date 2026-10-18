@@ -1,13 +1,14 @@
-/* Timed typography over a still glass composition. Native page scrolling. */
+/* Still glass, timed typography and a native scroll handoff into the work. */
 .code-hero{position:relative;z-index:2;background:transparent;color:var(--text);--header-height:95px;min-height:calc(100svh - var(--header-height))}
 .hero-sticky{position:relative;isolation:isolate;height:calc(100svh - var(--header-height));min-height:650px;pointer-events:none}
 .hero-scene{position:absolute;inset:0;isolation:isolate;overflow:clip;pointer-events:auto;background:var(--bg)}
+.hero-fluid{position:absolute;inset:0 auto 0 0;width:40%;z-index:0;overflow:clip;pointer-events:none;mask-image:linear-gradient(90deg,#000 0 78%,transparent 100%)}
 .code-field{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:1;color:rgba(255,255,255,.8);filter:none;mix-blend-mode:normal}
-.hero-art{position:absolute;inset:-8% -9% -1% 21%;pointer-events:none;z-index:0;mix-blend-mode:screen;mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 43%,#000a 70%,transparent 100%)}
+.hero-art{position:absolute;inset:-4% -8% -1% 30%;pointer-events:none;z-index:1;mix-blend-mode:normal;mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 43%,#000a 70%,transparent 100%)}
 .hero-art img{width:100%;height:100%;object-fit:contain}
 .hero-heading{position:relative;width:100%;height:100%;z-index:2;pointer-events:none}
 .hero-heading h1{font-weight:500;margin:0;font-size:inherit}
-.hero-type-title{position:absolute;display:block;left:var(--gutter);right:var(--gutter);top:23%;min-height:2.3em;font-size:clamp(76px,10.6vw,164px);font-weight:500;letter-spacing:-.065em;line-height:.96;pointer-events:auto}
+.hero-type-title{position:absolute;display:block;left:var(--gutter);right:var(--gutter);top:23%;min-height:2.3em;font-size:clamp(76px,10vw,164px);font-weight:500;letter-spacing:-.065em;line-height:.96;pointer-events:auto}
 .type-line{display:block;min-height:.96em;width:max-content;max-width:100%;white-space:nowrap}.type-line[hidden]{display:none}
 .type-line em{font-family:'Instrument Serif',Georgia,serif;font-weight:400;color:var(--accent-soft);font-size:1.12em;letter-spacing:-.04em}
 .type-caret{display:none;vertical-align:baseline;width:3px;height:.72em;margin-left:.07em;background:var(--accent-soft);box-shadow:none;transform:translateY(.045em)}
@@ -21,10 +22,49 @@
 .code-actions{display:flex;flex:none}
 .hero-explore{display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-height:53px;padding:0 23px;border-radius:999px;background:var(--text);color:var(--bg);font-size:13px;transition:background .2s}
 .hero-explore:hover{background:var(--accent-soft)}.hero-explore .icon{width:17px;height:20px}
-@media(min-width:1800px){.hero-art{left:24%;right:-4%}.hero-type-title{top:25%}}
-@media(max-width:1100px) and (min-width:761px){.hero-sticky{min-height:590px}.hero-type-title{font-size:11vw;top:27%}.hero-art{left:12%;right:-18%}}
-@media(max-width:760px){.code-hero{--header-height:73px}.hero-sticky{height:calc(100svh - var(--header-height));min-height:0}.hero-art{inset:0 -27% 17% -3%;mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 42%,#000a 70%,transparent 100%)}.hero-type-title{font-size:clamp(57px,13.8vw,100px);top:30%;letter-spacing:-.055em;line-height:1}.type-caret{width:2px}.hero-footer{bottom:25px;align-items:flex-start;flex-direction:column;gap:22px}.hero-signature{font-size:14px}.hero-signature>span{font-size:11px}.code-actions{width:100%}.hero-explore{width:100%;min-height:50px;font-size:12px}}
+@media(min-width:1800px){.hero-art{left:32%;right:-4%}.hero-type-title{top:25%}}
+@media(max-width:1100px) and (min-width:761px){.hero-sticky{min-height:590px}.hero-type-title{font-size:11vw;top:27%}.hero-art{left:24%;right:-20%}}
+@media(max-width:760px){.hero-fluid{display:none}.code-hero{--header-height:73px}.hero-sticky{height:calc(100svh - var(--header-height));min-height:0}.hero-art{inset:0 -27% 17% -3%;mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 42%,#000a 70%,transparent 100%)}.hero-type-title{font-size:clamp(57px,13.8vw,100px);top:30%;letter-spacing:-.055em;line-height:1}.type-caret{width:2px}.hero-footer{bottom:25px;align-items:flex-start;flex-direction:column;gap:22px}.hero-signature{font-size:14px}.hero-signature>span{font-size:11px}.code-actions{width:100%}.hero-explore{width:100%;min-height:50px;font-size:12px}}
 @media(max-width:359px){.hero-type-title{font-size:17vw}.hero-footer{gap:17px}}
-@media(max-height:740px) and (min-width:761px){.hero-sticky{min-height:0}.hero-type-title{top:20%;font-size:clamp(60px,8.8vw,110px)}.hero-art{inset:-10% -4% 4% 22%}.hero-footer{bottom:20px}}
+@media(max-height:740px) and (min-width:761px){.hero-sticky{min-height:0}.hero-type-title{top:20%;font-size:clamp(60px,8.8vw,110px)}.hero-art{inset:-10% -4% 4% 30%}.hero-footer{bottom:20px}}
 @media(prefers-reduced-motion:reduce){.title-ready .type-caret{display:none;animation:none}.hero-explore{transition:none}}
 @media print{.hero-sticky{height:auto;min-height:0}.hero-scene{position:relative;height:auto;background:white;color:black}.code-field,.hero-art,.hero-footer,.type-caret{display:none!important}.hero-heading{height:auto;padding-block:40px}.hero-type-title{position:static;font-size:60px}.type-line em{color:inherit}}
+
+/* A line opens into the real first project. No duplicate teaser or pinned screen. */
+#work[data-work-handoff]{position:relative;padding-top:64px}
+#work[data-work-handoff]::before{content:'';position:absolute;left:var(--gutter);right:var(--gutter);top:0;height:1px;background:var(--accent-soft);opacity:.32;transform:scaleX(calc(.08 + var(--heading-first,1)*.92));transform-origin:left center}
+#work[data-work-handoff] .section-heading{grid-template-columns:minmax(0,1.45fr) minmax(0,.55fr);gap:26px 40px;margin-bottom:48px}
+#work[data-work-handoff] .section-heading>.label{grid-column:1/-1;padding-top:0}
+#work[data-work-handoff] .section-heading h2{font-size:clamp(80px,10vw,152px);letter-spacing:-.06em;line-height:.9}
+#work[data-work-handoff] .section-heading>p:last-child{max-width:26ch;justify-self:end;text-align:right;font-size:15px;line-height:1.5}
+#work .work-word-mask{display:block;overflow:clip;padding-block:.07em;margin-block:-.07em;color:inherit}
+#work .work-word-mask:last-child{color:var(--muted)}
+.work-word-mask>span{display:block}
+.handoff-ready .work-word-mask:first-child>span{transform:translateY(calc((1 - var(--heading-first,1))*112%))}
+.handoff-ready .work-word-mask:last-child>span{transform:translateY(calc((1 - var(--heading-second,1))*112%))}
+.handoff-ready #project-ignis .project-panel{clip-path:inset(0 0 calc((1 - var(--work-reveal,1))*99.8%) 0)}
+.handoff-ready.handoff-opening #project-ignis .project-panel{will-change:clip-path}
+.work-opening-seam{display:none;position:absolute;top:var(--seam-y,0);left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--accent-soft) 15%,var(--text) 50%,var(--accent-soft) 85%,transparent);z-index:8;pointer-events:none}
+.handoff-opening .work-opening-seam{display:block}
+.handoff-ready #project-ignis .project-details{opacity:clamp(0,calc((var(--work-reveal,1) - .78)*4.55),1)}
+#project-ignis .project-panel:focus-visible{clip-path:none}
+@media(max-width:760px){
+ #work[data-work-handoff]{padding-top:40px}
+ #work[data-work-handoff] .section-heading{grid-template-columns:1fr;gap:20px;margin-bottom:32px}
+ #work[data-work-handoff] .section-heading h2{font-size:clamp(56px,14vw,100px)}
+ #work[data-work-handoff] .section-heading>p:last-child{justify-self:start;text-align:left;font-size:14px;max-width:30ch}
+}
+@media(prefers-reduced-motion:reduce){
+ .handoff-ready .work-word-mask>span{transform:none!important}
+ .handoff-ready #project-ignis .project-panel{clip-path:none;will-change:auto}
+ .handoff-ready #project-ignis .project-details{opacity:1}
+ .work-opening-seam{display:none!important}
+ #work[data-work-handoff]::before{transform:none}
+}
+@media print{
+ .hero-fluid{display:none}
+ .handoff-ready .work-word-mask>span{transform:none!important}
+ .handoff-ready #project-ignis .project-panel{clip-path:none}
+ .handoff-ready #project-ignis .project-details{opacity:1}
+ .work-opening-seam{display:none!important}
+}
