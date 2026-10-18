@@ -1,0 +1,7 @@
+.wordmark{display:inline-flex;align-items:center;justify-content:center;min-width:52px;min-height:44px;letter-spacing:0;line-height:1;flex:none}
+.wordmark img{display:block;width:54px;height:auto;max-width:none}
+.footer .wordmark img{width:46px}
+.about-stamp{font-size:0;letter-spacing:0;line-height:1}
+.about-stamp>img{width:136px;height:auto;opacity:.72}
+.about-stamp>small{font:8px/1.7 var(--mono);letter-spacing:.04em;margin-top:20px;color:var(--muted)}
+@media(max-width:760px){.wordmark img{width:47px}.wordmark{min-width:47px}.footer .wordmark img{width:42px}}

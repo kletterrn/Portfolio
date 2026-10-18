@@ -1,5 +1,5 @@
 // Adapted from the Codex renderer supplied by the site owner.
-// The fluid solver, glyph atlas and pointer interaction calculations are retained.
+// The supplied solver and glyph atlas are retained; pointer force and splash speed are calmer.
 (() => {
   const hero=document.querySelector('[data-code-hero]');
   const canvas=hero?.querySelector('.code-field');
@@ -12,8 +12,8 @@ let a=5/3,l="SF Mono, Consolas, Liberation Mono, ui-monospace, monospace",o=(e,t
     containerRef:{current:hero},fontSize:9,cellPadding:{x:1,y:2},fps:30,
     charset:'○>_ ',contrast:2,gamma:.5,invertLuma:true,lumaSmoothingMs:1000,
     lumaOverride:1,
-    mask:{enabled:true,resolutionScale:.8,forceScale:.5,hoverRadiusPx:28,
-      splashRangePx:184,splashVelocityScale:3,splashForceScale:2,splashDensity:.12,
+    mask:{enabled:true,resolutionScale:.8,forceScale:.36,hoverRadiusPx:28,
+      splashRangePx:184,splashVelocityScale:2.1,splashForceScale:1.6,splashDensity:.12,
       splashRandomness:.14,splashThicknessPx:100,splashTravelEasePower:2.5,
       splashForceDecayPower:1.2,splashDensityDecayPower:2,dragBoostScale:.03,
       dragBoostMaxPx:60,dragThresholdPx:6,diffusion:1.5,iterations:5,
