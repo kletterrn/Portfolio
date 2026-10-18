@@ -62,20 +62,26 @@
 @media print{.hero-crystal,.hero-title-live{display:none}.hero-title-sizer{visibility:visible}}
 
 .hero-mask-ready .code-field{opacity:.35}
-.hero-crystal{position:absolute;z-index:1;left:81%;top:0;width:min(62vw,calc((100svh - 95px)*1.02),1200px);aspect-ratio:3/2;transform:translateX(-50%);pointer-events:none}
-.hero-crystal{--crystal-outline:polygon(77.54% 1.66%,76.76% 4.79%,71.88% 17.19%,64.32% 32.52%,57.55% 43.07%,73.83% 62.89%,74.09% 63.87%,72.07% 64.94%,52.67% 72.17%,35.61% 84.57%,21.03% 97.46%,21.55% 95.8%,45.51% 41.21%,43.49% 37.7%,33.4% 22.95%,33.4% 22.46%,35.16% 21.97%,53.65% 18.95%,57.94% 15.33%);--crystal-light-x:56%;--crystal-light-y:44%;filter:drop-shadow(0 24px 38px #0009) drop-shadow(0 0 22px #426de126)}
-.hero-crystal img{display:block;width:100%;height:auto;clip-path:var(--crystal-outline);filter:saturate(.85) contrast(1.04) brightness(.96)}
-@media(min-width:1800px){.hero-crystal{left:80%}}
-@media(min-width:761px) and (max-width:1100px){.hero-crystal{left:89%;width:min(80vw,calc((100svh - 95px)*.98),950px)}}
-@media(max-width:760px){.hero-crystal{left:98%;top:15%;width:min(130vw,800px);opacity:.68;transform:translate(-50%,-50%)}}
-@media(max-height:700px) and (min-width:761px){.hero-crystal{width:min(60vw,calc((100svh - 95px)*.93),800px);left:84%}}
+.hero-crystal{position:absolute;z-index:1;left:66%;top:43%;width:min(165vw,3200px);aspect-ratio:3/2;transform:translate(-50%,-50%);opacity:1;pointer-events:none}
+.hero-crystal{--crystal-outline:polygon(77.54% 1.66%,76.76% 4.79%,71.88% 17.19%,64.32% 32.52%,57.55% 43.07%,73.83% 62.89%,74.09% 63.87%,72.07% 64.94%,52.67% 72.17%,35.61% 84.57%,21.03% 97.46%,21.55% 95.8%,45.51% 41.21%,43.49% 37.7%,33.4% 22.95%,33.4% 22.46%,35.16% 21.97%,53.65% 18.95%,57.94% 15.33%);--crystal-light-x:56%;--crystal-light-y:44%;filter:none}
+.hero-crystal img{display:block;width:100%;height:auto;clip-path:var(--crystal-outline);filter:saturate(.8) contrast(1.04) brightness(.78)}
+@media(min-width:1800px){.hero-crystal{left:66%;top:46%;width:min(150vw,3400px)}}
+@media(min-width:761px) and (max-width:1100px){.hero-crystal{left:70%;top:43%;width:175vw}}
+@media(max-width:760px){.hero-crystal{left:70%;top:28%;width:300vw;opacity:1}}
+@media(max-height:700px) and (min-width:761px){.hero-crystal{width:160vw;left:65%;top:38%}}
 @media print{.hero-crystal{display:none}}
 
 /* The glass shares a pool of light with the surrounding page. */
 .hero-scene::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;mask-image:linear-gradient(to bottom,transparent,black 15%,black 75%,transparent);-webkit-mask-image:linear-gradient(to bottom,transparent,black 15%,black 75%,transparent);background:radial-gradient(ellipse 47% 60% at 82% 32%,#213b683d 0%,#18283f29 39%,transparent 76%),radial-gradient(ellipse 28% 36% at 92% 16%,#527ab312,transparent 75%)}
 .hero-crystal::before{content:"";position:absolute;inset:10% 8% 8% 26%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 60% 48%,#6a97ff1c 0%,#3153ff0c 36%,transparent 70%);filter:blur(24px)}
-.hero-crystal-light{position:absolute;inset:0;clip-path:var(--crystal-outline);mix-blend-mode:screen;pointer-events:none;opacity:.8}
+.hero-crystal-light{position:absolute;inset:0;clip-path:var(--crystal-outline);mix-blend-mode:screen;pointer-events:none;opacity:.5}
 .hero-crystal-light::before{content:"";position:absolute;left:var(--crystal-light-x);top:var(--crystal-light-y);width:46%;height:48%;transform:translate(-50%,-50%) rotate(-30deg);background:radial-gradient(ellipse,#f4f8ff50 0%,#b4c7ff1a 27%,transparent 68%);transition:left .6s cubic-bezier(.22,1,.36,1),top .6s cubic-bezier(.22,1,.36,1)}
-@media(max-width:760px){.hero-scene::before{background:radial-gradient(ellipse 95% 45% at 105% 16%,#213b6840,transparent 76%)}.hero-crystal-light{display:none}.hero-crystal{filter:drop-shadow(0 8px 24px #426de124)}}
+@media(max-width:760px){.hero-scene::before{background:radial-gradient(ellipse 95% 45% at 105% 16%,#213b6840,transparent 76%)}.hero-crystal-light{display:none}.hero-crystal{filter:none}}
 @media(prefers-reduced-motion:reduce){.hero-crystal-light::before{transition:none}}
 @media print{.hero-scene::before{display:none}}
+
+/* A cropped, full-stage glass backdrop. Text and controls stay above its tonal scrim. */
+.hero-scene::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#101010f2 0%,#101010a8 31%,#10101026 72%,#10101005 100%),linear-gradient(0deg,#101010 0%,#101010e0 17%,#10101026 45%,transparent 65%)}
+.hero-editorial-title{text-shadow:0 2px 22px #10101066}
+@media(max-width:760px){.hero-scene::after{background:linear-gradient(90deg,#101010d9,#1010104d),linear-gradient(0deg,#101010 0%,#101010e0 25%,#10101026 68%,transparent)}}
+@media print{.hero-scene::after{display:none}.hero-editorial-title{text-shadow:none}}
