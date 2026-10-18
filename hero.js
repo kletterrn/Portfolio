@@ -5,107 +5,109 @@
   if (!hero || !ctx) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
-  const glyphs = '.:-=+*#%@';
-  let width = 0, height = 0, stepX = 12, stepY = 15, columns = 0, rows = 0;
-  let frame = 0, last = 0, visible = true, time = 0;
-  let trail = [], pointer = null, cells = [];
-  const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
+  const lifetime = 1.8;
+  const cellWidth = 9, cellHeight = 12;
+  let width = 0, height = 0, columns = 0, rows = 0, field;
+  let stamps = [], previous = null, frame = 0, lastPaint = 0, visible = true;
+  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+  function clear() {
+    ctx.clearRect(0, 0, width, height);
+    stamps = []; previous = null;
+    cancelAnimationFrame(frame); frame = 0;
+  }
+  function allowed() {
+    return visible && !document.hidden && fine.matches && !reduced.matches;
+  }
   function resize() {
     const box = hero.getBoundingClientRect();
     width = box.width; height = box.height;
-    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    const dpr = Math.min(devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    stepX = width < 760 ? 13 : Math.max(11, width / 145);
-    stepY = stepX * 1.25;
-    columns = Math.ceil(width / stepX); rows = Math.ceil(height / stepY);
-    ctx.font = `${Math.floor(stepX)}px "DM Mono", monospace`;
+    ctx.font = '10px "DM Mono", monospace';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    cells = [];
-    for (let row = 0; row < rows; row++) for (let col = 0; col < columns; col++) {
-      cells.push({x:(col+.5)*stepX,y:(row+.5)*stepY,seed:(Math.sin(col*127.1+row*311.7)*43758.5453)%1});
-    }
-    trail = []; pointer = null; render(0);
-    wake();
-  }
-  function render(dt) {
-    time += dt;
-    ctx.clearRect(0, 0, width, height);
-    trail = trail.filter(point => (point.age += dt) < 1.65);
-    const aspect = width / Math.max(height, 1);
-    const phase = time * .16;
-    for (const cell of cells) {
-      const u = cell.x / width, v = cell.y / height;
-      let bend = 0, energy = 0;
-      for (const point of trail) {
-        const dx = (cell.x-point.x) / 145, dy = (cell.y-point.y) / 145;
-        const dist = Math.sqrt(dx*dx+dy*dy);
-        if (dist > 2.6) continue;
-        const fade = 1 - point.age/1.65;
-        const force = Math.exp(-dist*dist*1.6)*fade;
-        energy += force * .65;
-        bend += Math.sin(dist*8-point.age*7)*force*.08;
-      }
-      if (pointer) {
-        const dx=(cell.x-pointer.x)/155,dy=(cell.y-pointer.y)/155;
-        energy += Math.exp(-(dx*dx+dy*dy)*1.5)*.28;
-      }
-      const x = (u-.5)*aspect;
-      const yy = v + bend;
-      const waveA = .5+.19*Math.sin(x*2.7+phase)+.07*Math.sin(x*5.4-phase*.8);
-      const waveB = .5-.24*Math.sin(x*2.3-phase*.65+1.5);
-      const ribbonA = Math.exp(-Math.pow((yy-waveA)/.095,2));
-      const ribbonB = Math.exp(-Math.pow((yy-waveB)/.075,2));
-      const folds = .48+.52*Math.pow(Math.sin(x*8+yy*9+phase),2);
-      const shape = Math.max(ribbonA*.75,ribbonB*.48)*folds;
-      const center = Math.exp(-Math.pow((u-.5)/.29,4)-Math.pow((v-.47)/.25,4));
-      const readability = 1-center*.88;
-      const edge = clamp(Math.min(v/.11,(1-v)/.16),0,1);
-      const level = clamp(shape*readability+energy*.8,0,1)*edge;
-      if (level < .055) continue;
-      const index = clamp(Math.floor(level*8+(cell.seed>.55?1:0)),0,glyphs.length-1);
-      const alpha = clamp(level*.85,0,.85);
-      const hot = clamp(energy,0,1);
-      ctx.fillStyle = `rgba(${Math.round(66+hot*95)},${Math.round(94+hot*82)},255,${alpha.toFixed(2)})`;
-      ctx.fillText(glyphs[index],cell.x,cell.y);
-    }
-  }
-  function tick(now) {
-    frame = 0;
-    if (!visible || document.hidden || reduced.matches) return;
-    const elapsed = now-last;
-    if (elapsed >= 1000/30) {
-      render(Math.min(elapsed/1000,.05)); last=now;
-    }
-    wake();
+    columns = Math.ceil(width / cellWidth); rows = Math.ceil(height / cellHeight);
+    field = new Float32Array(columns * rows);
+    clear();
   }
   function wake() {
-    if (!frame && visible && !document.hidden && !reduced.matches) frame=requestAnimationFrame(tick);
+    if (!frame && allowed() && stamps.length) frame = requestAnimationFrame(draw);
   }
-  hero.addEventListener('pointermove', event => {
-    if (!fine.matches || reduced.matches || event.pointerType==='touch') return;
-    const box=hero.getBoundingClientRect();
-    const next={x:event.clientX-box.left,y:event.clientY-box.top};
-    if (!pointer || Math.hypot(next.x-pointer.x,next.y-pointer.y)>9) {
-      trail.push({...next,age:0});
-      if (trail.length>18) trail.shift();
+  function paint(now) {
+    ctx.clearRect(0, 0, width, height);
+    field.fill(0);
+    stamps = stamps.filter(stamp => now - stamp.time < lifetime * 1000);
+    for (const stamp of stamps) {
+      const age = Math.max(0, (now - stamp.time) / 1000);
+      const fade = Math.pow(1 - age / lifetime, 2.1);
+      const radius = stamp.radius * (1 + age * .27);
+      const bound = radius * 1.9;
+      const left = Math.max(0, Math.floor((stamp.x-bound)/cellWidth));
+      const right = Math.min(columns-1, Math.ceil((stamp.x+bound)/cellWidth));
+      const top = Math.max(0, Math.floor((stamp.y-bound)/cellHeight));
+      const bottom = Math.min(rows-1, Math.ceil((stamp.y+bound)/cellHeight));
+      for (let row=top; row<=bottom; row++) {
+        const dy=((row+.5)*cellHeight-stamp.y)/radius;
+        for (let col=left; col<=right; col++) {
+          const dx=((col+.5)*cellWidth-stamp.x)/radius;
+          const distance=dx*dx+dy*dy;
+          if (distance>3.6) continue;
+          field[row*columns+col] += Math.exp(-distance*2.1)*fade*stamp.strength;
+        }
+      }
     }
-    pointer=next; wake();
+    for (let row=0; row<rows; row++) for (let col=0; col<columns; col++) {
+      const value=field[row*columns+col];
+      if (value<.075) continue;
+      const glyph=value<.17?'_':value<.4?'-':value<1.1?'>':'o';
+      const alpha=clamp(value*.29,0,.58);
+      ctx.fillStyle=`rgba(228,234,255,${alpha.toFixed(3)})`;
+      ctx.fillText(glyph,(col+.5)*cellWidth,(row+.5)*cellHeight);
+    }
+  }
+  function draw(now) {
+    frame = 0;
+    if (!allowed()) { clear(); return; }
+    if (now-lastPaint>=1000/60) { paint(now); lastPaint=now; }
+    wake();
+  }
+  hero.addEventListener('pointermove',event=>{
+    if (!allowed() || event.pointerType==='touch') return;
+    const box=hero.getBoundingClientRect();
+    const now=performance.now();
+    const point={x:event.clientX-box.left,y:event.clientY-box.top,time:now};
+    const distance=previous?Math.hypot(point.x-previous.x,point.y-previous.y):0;
+    const elapsed=previous?Math.max(8,now-previous.time):16;
+    if (previous && distance<1.5) return;
+    const speed=distance/elapsed*1000;
+    const radius=38+55*Math.exp(-speed/310);
+    if (previous && elapsed<100) {
+      const count=Math.min(32,Math.max(1,Math.ceil(distance/8)));
+      for(let i=1;i<=count;i++){
+        const t=i/count;
+        stamps.push({x:previous.x+(point.x-previous.x)*t,y:previous.y+(point.y-previous.y)*t,time:now,radius,strength:.24});
+      }
+    } else {
+      stamps.push({...point,radius:52,strength:.8});
+    }
+    if (stamps.length>200) stamps.splice(0,stamps.length-200);
+    previous=point;
+    wake();
   },{passive:true});
-  function reset(){pointer=null;trail=[];if(reduced.matches)render(0);}
-  hero.addEventListener('pointerleave',()=>{pointer=null;});
-  hero.addEventListener('pointercancel',reset);
-  fine.addEventListener('change',reset);
-  reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;reset();render(0);last=performance.now();wake();});
+  hero.addEventListener('pointerleave',()=>{previous=null;});
+  hero.addEventListener('pointercancel',clear);
+  fine.addEventListener('change',clear);
+  reduced.addEventListener('change',clear);
+  window.addEventListener('blur',()=>{previous=null;});
   new ResizeObserver(resize).observe(hero);
   if ('IntersectionObserver' in window) new IntersectionObserver(([entry])=>{
-    visible=entry.isIntersecting;hero.classList.toggle('hero-offscreen',!visible);
-    if(visible){last=performance.now();wake();}else{cancelAnimationFrame(frame);frame=0;reset();}
+    visible=entry.isIntersecting;
+    hero.classList.toggle('hero-offscreen',!visible);
+    if(!visible)clear();
   }).observe(hero);
   document.addEventListener('visibilitychange',()=>{
     hero.classList.toggle('hero-page-hidden',document.hidden);
-    if(document.hidden){cancelAnimationFrame(frame);frame=0;reset();}else{last=performance.now();wake();}
+    if(document.hidden)clear();
   });
-  window.addEventListener('blur',()=>{pointer=null;});
   resize();
 })();
