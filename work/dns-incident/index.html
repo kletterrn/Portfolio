@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101010"><meta name="color-scheme" content="dark"><title>DNS & ICMP Incident Analysis — David Khaliqi</title><meta name="description" content="An evidence-led analysis of a DNS availability incident: three UDP queries, three ICMP errors, and a careful distinction between observations and possible causes."><meta property="og:title" content="DNS & ICMP Incident Analysis — David Khaliqi"><meta property="og:description" content="Follow the packet evidence from a failed DNS lookup to a reasoned incident report. A Google Cybersecurity Certificate training case study."><meta property="og:type" content="website"><meta property="og:url" content="https://kletterrn.github.io/work/dns-incident/"><link rel="canonical" href="https://kletterrn.github.io/work/dns-incident/"><link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml"><link rel="stylesheet" href="/fonts.css"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/incident.css?v=e8b3a4b158cd"><script src="/app.js" defer></script><script src="/incident.js?v=00d5d1392320" defer></script></head><body id="top"><a class="skip" href="#main">Skip to content</a><div class="read-progress" aria-hidden="true"></div><header class="header"><div class="header-inner wrap"><a class="wordmark" href="/" aria-label="David Khaliqi, home">D<span>/</span>K</a><a class="header-role" href="/#about">Independent mind.<br>Design & development.</a><nav id="navigation" class="navigation" aria-label="Main navigation"><a href="/#work">Work</a><a href="/#about">About</a><a href="/cv/">CV</a><a href="/#contact">Let’s talk <svg class="icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M4 4h12v12"/></svg></a></nav><button class="menu-toggle" aria-expanded="false" aria-controls="navigation" type="button"><span>Menu</span><i aria-hidden="true"></i></button></div></header>
+<main id="main" class="case-main incident-page">
+<section class="case-hero wrap"><a class="case-back" href="/#cybersecurity">← Back to cybersecurity projects</a><div class="case-eyebrow"><p class="label">Cybersecurity / Project 02</p><span class="project-state">Training case study</span></div><h1>DNS INCIDENT<span>.</span></h1><div class="case-lead"><h2>THE PAGE WON’T LOAD.<br>FOLLOW THE PACKETS.</h2><p>A website-access problem. Three DNS queries. Three ICMP errors. An analysis of a supplied tcpdump excerpt to identify the failing service and the next questions to investigate.</p></div><dl class="case-meta"><div><dt>Context</dt><dd>Google Cybersecurity Certificate activity</dd></div><div><dt>Focus</dt><dd>DNS / UDP / ICMP / Availability</dd></div><div><dt>My work</dt><dd>Packet-log analysis and an incident report</dd></div></dl></section>
+<div class="wrap">
+<section class="packet-exhibit" data-packet-exhibit aria-labelledby="packet-title">
+<div class="packet-exhibit-head"><div><p class="label">The exchange / Reconstructed from supplied evidence</p><h2 id="packet-title">A request.<br>An error instead of an answer.</h2></div><p class="label">3 REQUESTS<br>3 ICMP ERRORS</p></div>
+<fieldset class="attempt-controls"><legend>Inspect a DNS request and its following error</legend><button type="button" data-attempt="0" aria-pressed="true">Attempt 01</button><button type="button" data-attempt="1" aria-pressed="false">Attempt 02</button><button type="button" data-attempt="2" aria-pressed="false">Attempt 03</button></fieldset>
+<div class="flow-nodes"><div class="flow-node"><span class="label">Client / Requesting an address</span><strong>192.51.100.15</strong><small>UDP source port 52444</small></div><div class="flow-route" aria-hidden="true"><span>DNS QUERY →</span><svg viewBox="0 0 200 100" fill="none"><path d="M7 28H190m-12-10 12 10-12 10" stroke="#3153ff" stroke-width="2"/><path d="M190 75H7m12-10L7 75l12 10" stroke="#b4c7ff" stroke-width="2" stroke-dasharray="4 5"/><circle class="packet-out" cx="10" cy="28" r="5" fill="#3153ff"/><circle class="packet-back" cx="185" cy="75" r="5" fill="#b4c7ff"/></svg><span>← ICMP ERROR</span></div><div class="flow-node flow-dns"><div><span class="label">DNS server / UDP port</span><strong>203.0.113.2</strong><small>Destination port unreachable</small></div><b>53</b></div></div>
+<div class="packet-bottom"><p class="packet-summary" data-packet-status role="status" aria-live="polite">Attempt 1: a DNS query over UDP is followed by an ICMP port-unreachable message. <strong>No DNS answer is shown.</strong></p><button type="button" class="packet-replay" data-replay>Replay exchange ↗</button></div>
+<div class="packet-exchange"><p><time data-request-time>13:24:32.192571</time> &nbsp;192.51.100.15:52444 → 203.0.113.2:53<br>DNS A? yummyrecipesforme.com. / query ID 35084</p><p><time data-response-time>13:24:36.098564</time> &nbsp;203.0.113.2 → 192.51.100.15<br><span class="packet-error">ICMP: udp port 53 unreachable</span> / length <span data-response-length>254</span></p></div>
+<p class="packet-exhibit-note">Illustrated playback, not a live capture. Packet timestamps are retained; animation timing is shortened for explanation.</p>
+</section>
+<section class="case-contributions" aria-labelledby="contribution-title"><div><p class="label">My contribution</p><h2 id="contribution-title">Read the traffic.<br>Explain the failure.</h2></div><ul><li>Analyzed the supplied tcpdump excerpt and identified DNS over UDP port 53 as the affected service.</li><li>Connected the three query/error exchanges to the reported website-access problem.</li><li>Wrote an incident report separating observed facts from possible service or firewall causes.</li></ul></section>
+<section class="incident-verdict" aria-labelledby="verdict-title"><p class="label">The central finding</p><div><h2 id="verdict-title">The failure shown is DNS.<br>ICMP tells us where to look.</h2><p>The client requests an IPv4 address for <code>yummyrecipesforme.com</code>. The destination returns an ICMP message reporting UDP port 53 as unreachable. There is no successful DNS answer in this excerpt. That explains a failure during name resolution; the web server’s health is not established by these packets.</p></div></section>
+<div class="case-editorial"><aside class="case-sidebar"><p class="label">Inside the analysis</p><nav aria-label="Case study sections"><a href="#evidence"><span>01</span> Evidence</a><a href="#analysis"><span>02</span> Findings</a><a href="#response"><span>03</span> Next steps</a><a href="#report"><span>04</span> Report & sources</a></nav></aside><div class="case-sections">
+<section class="case-section" id="evidence"><p class="label">01 / What the log shows</p><h2>Three attempts.<br>The same failure pattern.</h2><p>In the course scenario, customers report that a client’s recipe website will not load and shows “destination port unreachable.” The supplied excerpt records three A-record queries from <code>192.51.100.15:52444</code> to <code>203.0.113.2</code>, with the destination service shown as <code>domain</code> (port 53).</p><div class="incident-table-wrap" role="region" aria-label="Packet timeline, scroll horizontally on small screens" tabindex="0"><table class="incident-table"><caption>Query and following ICMP error / Supplied timestamps</caption><thead><tr><th scope="col">Attempt</th><th scope="col">DNS request</th><th scope="col">ICMP error</th><th scope="col">Observed result</th></tr></thead><tbody><tr><th scope="row">01</th><td><time>13:24:32.192571</time></td><td><time>13:24:36.098564</time></td><td>UDP port 53 unreachable</td></tr><tr><th scope="row">02</th><td><time>13:26:32.192571</time></td><td><time>13:27:15.934126</time></td><td>UDP port 53 unreachable</td></tr><tr><th scope="row">03</th><td><time>13:28:32.192571</time></td><td><time>13:28:50.022967</time></td><td>UDP port 53 unreachable</td></tr></tbody></table></div><p>13:24:32.192571 is the first query timestamp shown, not a confirmed outage start. The excerpt provides no date or timezone. The scenario mentions <code>www.yummyrecipesforme.com</code>; the actual logged queries are for <code>yummyrecipesforme.com</code>.</p>
+<details class="source-detail"><summary>Read the complete packet-log transcription</summary><pre class="traffic-log">13:24:32.192571 IP 192.51.100.15.52444 &gt; 203.0.113.2.domain: 35084+ A?
+yummyrecipesforme.com. (24)
+13:24:36.098564 IP 203.0.113.2 &gt; 192.51.100.15: ICMP 203.0.113.2
+udp port 53 unreachable length 254
+
+13:26:32.192571 IP 192.51.100.15.52444 &gt; 203.0.113.2.domain: 35084+ A?
+yummyrecipesforme.com. (24)
+13:27:15.934126 IP 203.0.113.2 &gt; 192.51.100.15: ICMP 203.0.113.2
+udp port 53 unreachable length 320
+
+13:28:32.192571 IP 192.51.100.15.52444 &gt; 203.0.113.2.domain: 35084+ A?
+yummyrecipesforme.com. (24)
+13:28:50.022967 IP 203.0.113.2 &gt; 192.51.100.15: ICMP 203.0.113.2
+udp port 53 unreachable length 150
+</pre></details>
+
+<div class="source-actions"><a href="/assets/network/dns-icmp-log.txt" download>Download traffic log ↓</a></div></section>
+<section class="case-section" id="analysis"><p class="label">02 / Interpreting the evidence</p><h2>Be precise about<br>what is known.</h2><p>DNS is the application protocol affected in this exchange. Its query is carried over UDP at the transport layer; IP carries the packets, and ICMP reports the delivery problem. The IPv4 “port unreachable” message corresponds to ICMP Destination Unreachable, Type 3, Code 3. This identifies a port-level failure rather than a DNS answer saying that the name does not exist.</p><div class="incident-findings"><div><h3>Observed</h3><ul><li>Three UDP DNS queries target the same server and port.</li><li>Each is followed by an ICMP error from the DNS-server address.</li><li>No successful DNS response or HTTPS exchange is shown.</li></ul></div><div><h3>Possible, not confirmed</h3><ul><li>The DNS service has stopped or is not listening on UDP 53.</li><li>A firewall or host policy is actively rejecting the requests.</li><li>A configuration change has affected DNS availability.</li></ul></div></div><p class="incident-note">An ICMP reply is a clue, not proof of an attack. The excerpt alone does not identify a malicious actor, establish a denial-of-service attack, reveal the server configuration, or show whether DNS over TCP works.</p></section>
+<section class="case-section" id="response"><p class="label">03 / Proposed investigation</p><h2>Check the service.<br>Then verify recovery.</h2><p>These are recommended next steps for an authorized IT team. They were not performed against live systems as part of this document-based exercise.</p><ol class="response-list"><li><h3><span class="label">01</span> Confirm the scope</h3><p>Check whether other users and domain lookups using the same resolver are affected. Review DNS settings and recent changes, and establish the incident timeline from monitoring and customer reports.</p></li><li><h3><span class="label">02</span> Inspect the DNS service and rules</h3><p>On the authorized DNS host, check service status, UDP 53 listeners, interface bindings and service logs. Review host and network firewall rejection logs. Compare UDP and TCP behavior before choosing a fix.</p></li><li><h3><span class="label">03</span> Restore and validate</h3><p>Correct the confirmed service or policy issue. Repeat the DNS lookup, verify a valid answer and then test website access over HTTPS. Retain a follow-up capture, record the change and monitor for recurrence.</p></li></ol></section>
+<section class="case-section" id="report"><p class="label">04 / My report & reference material</p><h2>Show the reasoning.<br>Keep the evidence available.</h2><p>The original report below is my submitted written analysis. This portfolio presentation adds an interactive explanation and clarifies that the first packet timestamp is an observation, not a proven incident start. No live-system investigation or remediation is claimed.</p><div class="source-actions"><a href="/assets/network/david-khaliqi-dns-incident-report.txt" download>Download my original report ↓</a><a href="#evidence">Compare with the packet evidence ↑</a></div><details class="source-detail"><summary>Read my original submitted report</summary><pre class="original-report">Cybersecurity Incident Report: 
+Network Traffic Analysis
+
+
+Part 1: Provide a summary of the problem found in the DNS and ICMP traffic
+log
+	DNS server 203.0.113.2 UDP Port 53 unreachable. The client 192.51.100.15 keeps trying to resolve the domain yummyrecipesforme.com but the requests fail.
+
+
+The ICMP error message returned ICMP 203.0.113.2 udp port 53 unreachable
+
+
+DNS uses port 53 to translate domain names to IP addresses.
+
+
+The DNS service on the destination server is down or misconfigured or is being blocked or rejected by a firewall.
+
+
+	
+
+Part 2: Explain your analysis of the data and provide at least one cause of the
+incident
+	The incident occurred at 13:24:32.192571, which is 1:24 pm and 32 seconds
+
+
+The IT team became aware of the issue by customers of clients that reported the issue; they were not able to connect to the website.
+
+
+The IT team also encountered the same error and they attempted to access the site The issue was reported to the IT team by the clients’ customers, who were not able to connect to the website.
+
+
+Client IP: 192.51.100.15
+* DNS server IP address : 203.0.113.2
+* Port(s) affected: UDP 53 (DNS)
+* Requested domain: yummyrecipesforme.com
+* Protocols involved: DNS over UDP and ICMP
+* Three DNS queries are visible in the log.
+* Each query is followed by an ICMP port-unreachable error.
+* No successful DNS response is shown in the provided log.
+
+
+
+
+A possible cause is that the DNS service on the server has stopped running or is not listening on UDP port 53. Another possibility is a firewall configuration rejecting DNS requests.</pre></details><p class="incident-note">Training context: the scenario and packet-log image were supplied for a Google Cybersecurity Certificate activity. This is an educational case study, not a response to a real client incident.</p><ul class="incident-references"><li>Source evidence: the supplied activity scenario, tcpdump image, and my incident report reproduced on this page.</li><li><a href="https://www.rfc-editor.org/rfc/rfc1035.html#section-4.2">RFC 1035, section 4.2</a> — DNS transport over UDP and TCP port 53.</li><li><a href="https://www.rfc-editor.org/rfc/rfc792.html">RFC 792</a> — IPv4 ICMP Destination Unreachable and port-unreachable code.</li></ul></section>
+</div></div>
+<a class="next-work" href="/work/botium-audit/"><div><p class="label">More cybersecurity work</p><h2>BOTIUM TOYS<span>.</span></h2></div><span aria-hidden="true">↗</span></a>
+</div></main><footer class="footer wrap"><a class="wordmark" href="/" aria-label="Home">D<span>/</span>K</a><span>© 2026 David Khaliqi</span><span class="footer-note">Design · Development · Cybersecurity</span><nav class="legal-links" aria-label="Rechtliches"><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a></nav><a class="back-top" href="#top">Back to top <svg class="icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 17V3m-6 6 6-6 6 6"/></svg></a></footer></body></html>

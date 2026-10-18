@@ -1,0 +1,8 @@
+/* Small portfolio-wide refinements after the design review. */
+.portfolio-home .section-heading h2,.portfolio-home .about-content h2{letter-spacing:-.045em;line-height:.98}
+.portfolio-home .project-title h3{letter-spacing:-.055em}
+.portfolio-home #work{padding-bottom:45px}
+.portfolio-home #cybersecurity{padding-top:65px}
+.portfolio-home .work-item{scroll-margin-top:110px}
+.portfolio-home .project-detail-links a{min-height:44px}
+@media(max-width:760px){.portfolio-home #work{padding-bottom:25px}.portfolio-home #cybersecurity{padding-top:40px}.portfolio-home .work-item{scroll-margin-top:92px}.portfolio-home .project-details{flex-direction:column;align-items:flex-start;gap:8px}}
