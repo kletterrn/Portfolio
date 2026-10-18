@@ -32,3 +32,6 @@
 @media(max-width:359px){.code-art{height:315px}.code-content{padding-top:235px}.code-title{font-size:19vw}}
 @media(prefers-reduced-motion:reduce){.code-primary .icon{animation:none}.code-primary,.folio-index a span{transition:none}}
 @media print{.code-field,.code-art,.folio-index,.code-meta{display:none}.code-hero{background:white;color:black;min-height:0}.code-stage{min-height:0}.code-content{padding-top:60px}.code-title{font-size:70px}.code-note{display:none}.code-footer{display:none}}
+
+/* Keep the project shortcuts above the full-width title's transparent box. */
+.code-note,.folio-index{z-index:3}
