@@ -62,13 +62,13 @@
 @media print{.hero-crystal,.hero-title-live{display:none}.hero-title-sizer{visibility:visible}}
 
 .hero-mask-ready .code-field{opacity:.35}
-.hero-crystal{position:absolute;z-index:1;left:66%;top:43%;width:min(165vw,3200px);aspect-ratio:3/2;transform:translate(-50%,-50%);opacity:1;pointer-events:none}
+.hero-crystal{position:absolute;z-index:1;left:61%;top:45%;width:min(140vw,3000px);aspect-ratio:3/2;transform:translate(-50%,-50%);opacity:1;pointer-events:none}
 .hero-crystal{--crystal-outline:polygon(77.54% 1.66%,76.76% 4.79%,71.88% 17.19%,64.32% 32.52%,57.55% 43.07%,73.83% 62.89%,74.09% 63.87%,72.07% 64.94%,52.67% 72.17%,35.61% 84.57%,21.03% 97.46%,21.55% 95.8%,45.51% 41.21%,43.49% 37.7%,33.4% 22.95%,33.4% 22.46%,35.16% 21.97%,53.65% 18.95%,57.94% 15.33%);--crystal-light-x:56%;--crystal-light-y:44%;filter:none}
 .hero-crystal img{display:block;width:100%;height:auto;clip-path:var(--crystal-outline);filter:saturate(.8) contrast(1.04) brightness(.78)}
-@media(min-width:1800px){.hero-crystal{left:66%;top:46%;width:min(150vw,3400px)}}
-@media(min-width:761px) and (max-width:1100px){.hero-crystal{left:70%;top:43%;width:175vw}}
-@media(max-width:760px){.hero-crystal{left:70%;top:28%;width:300vw;opacity:1}}
-@media(max-height:700px) and (min-width:761px){.hero-crystal{width:160vw;left:65%;top:38%}}
+@media(min-width:1800px){.hero-crystal{left:61%;top:47%;width:min(130vw,3000px)}}
+@media(min-width:761px) and (max-width:1100px){.hero-crystal{left:65%;top:45%;width:150vw}}
+@media(max-width:760px){.hero-crystal{left:65%;top:30%;width:260vw;opacity:1}}
+@media(max-height:700px) and (min-width:761px){.hero-crystal{width:140vw;left:61%;top:40%}}
 @media print{.hero-crystal{display:none}}
 
 /* The glass shares a pool of light with the surrounding page. */
