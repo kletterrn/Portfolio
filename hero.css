@@ -62,10 +62,10 @@
 @media print{.hero-crystal,.hero-title-live{display:none}.hero-title-sizer{visibility:visible}}
 
 .hero-mask-ready .code-field{opacity:.35}
-.hero-crystal{position:absolute;z-index:1;left:82%;top:39%;width:min(72vw,1100px);aspect-ratio:3/2;transform:translate(-50%,-50%);pointer-events:none}
+.hero-crystal{position:absolute;z-index:1;left:81%;top:0;width:min(62vw,calc((100svh - 95px)*1.02),1200px);aspect-ratio:3/2;transform:translateX(-50%);pointer-events:none}
 .hero-crystal img{display:block;width:100%;height:auto;clip-path:polygon(77.54% 1.66%,76.76% 4.79%,71.88% 17.19%,64.32% 32.52%,57.55% 43.07%,73.83% 62.89%,74.09% 63.87%,72.07% 64.94%,52.67% 72.17%,35.61% 84.57%,21.03% 97.46%,21.55% 95.8%,45.51% 41.21%,43.49% 37.7%,33.4% 22.95%,33.4% 22.46%,35.16% 21.97%,53.65% 18.95%,57.94% 15.33%)}
-@media(min-width:1800px){.hero-crystal{left:79%;width:min(68vw,1420px);top:42%}}
-@media(min-width:761px) and (max-width:1100px){.hero-crystal{left:89%;top:34%;width:80vw}}
-@media(max-width:760px){.hero-crystal{left:98%;top:15%;width:min(130vw,800px);opacity:.68}}
-@media(max-height:700px) and (min-width:761px){.hero-crystal{width:min(65vw,850px);top:32%;left:85%}}
+@media(min-width:1800px){.hero-crystal{left:80%}}
+@media(min-width:761px) and (max-width:1100px){.hero-crystal{left:89%;width:min(80vw,calc((100svh - 95px)*.98),950px)}}
+@media(max-width:760px){.hero-crystal{left:98%;top:15%;width:min(130vw,800px);opacity:.68;transform:translate(-50%,-50%)}}
+@media(max-height:700px) and (min-width:761px){.hero-crystal{width:min(60vw,calc((100svh - 95px)*.93),800px);left:84%}}
 @media print{.hero-crystal{display:none}}
