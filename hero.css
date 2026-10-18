@@ -5,7 +5,7 @@
 .hero-fluid{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:clip}
 .code-field{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;color:rgba(255,255,255,.8);filter:none;mix-blend-mode:normal;mask-image:var(--crystal-mask);-webkit-mask-image:var(--crystal-mask);mask-size:100% 100%;-webkit-mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat}
 .hero-mask-ready .code-field{opacity:1}
-.hero-topline{position:absolute;top:25px;left:0;right:0;z-index:5;display:flex;justify-content:space-between;gap:30px;pointer-events:none}
+.hero-showcase-topline{position:absolute;top:25px;left:0;right:0;z-index:5;display:flex;justify-content:space-between;gap:30px;pointer-events:none;align-items:flex-start;padding-top:20px;border-top:1px solid #ffffff13}
 .hero-owner{font-size:16px;line-height:1.4;letter-spacing:-.02em}
 .hero-owner>span{display:block;margin-top:5px;font:11px/1.6 var(--mono);letter-spacing:0;color:var(--muted)}
 .hero-discipline{text-align:right;font-size:13px;line-height:1.5;color:var(--muted)}
@@ -29,12 +29,12 @@
 /* The work heading stays in its semantic, static section. */
 .section-heading h2>.work-word-mask{display:block;color:inherit}.section-heading h2>.work-word-mask:last-child{color:var(--muted)}
 .cinema-work{padding-top:65px}.cinema-work>.section-heading{margin-bottom:45px}
-@media(min-width:1800px){.hero-title-first{top:10%}.hero-title-second{top:49%}.hero-topline,.hero-footer{max-width:none}.hero-art{width:min(78vw,1600px)}}
+@media(min-width:1800px){.hero-title-first{top:10%}.hero-title-second{top:49%}.hero-showcase-topline,.hero-footer{max-width:none}.hero-art{width:min(78vw,1600px)}}
 @media(min-width:761px) and (max-width:1100px){.hero-sticky{min-height:590px}.hero-title-first{top:18%}.hero-title-second{top:50%}.hero-art{width:105vw}.hero-signature{font-size:14px}.hero-explore{gap:28px}}
 @media(max-width:760px){
  .code-hero{--header-height:73px;--display-size:calc((100vw - var(--gutter)*2)*.272)}
  .hero-sticky{height:calc(100svh - var(--header-height));min-height:570px}
- .hero-topline{top:22px}.hero-owner{font-size:16px}.hero-owner>span{font-size:10px}.hero-discipline{font-size:11px;max-width:16ch}
+ .hero-showcase-topline{top:22px;padding-top:15px}.hero-owner{font-size:16px}.hero-owner>span{font-size:10px}.hero-discipline{font-size:11px;max-width:16ch}
  .hero-title-first{top:19%;transform:none}.hero-title-second{top:49%;transform:none}
  .hero-art{top:43%;width:150vw;max-width:900px}
  .hero-fluid{display:none}
@@ -46,7 +46,7 @@
 }
 @media(max-height:680px) and (min-width:761px){
  .code-hero{--display-size:min(calc((100vw - var(--gutter)*2)*.272),calc((100svh - 95px)*.43))}
- .hero-sticky{min-height:450px}.hero-topline{top:15px}.hero-owner{font-size:14px}.hero-owner>span{font-size:10px}.hero-title-first{top:14%}.hero-title-second{top:49%}.hero-art{width:min(74vw,900px)}.hero-footer{bottom:18px}.hero-signature{font-size:13px}.hero-explore{min-height:48px;font-size:13px}
+ .hero-sticky{min-height:450px}.hero-showcase-topline{top:15px}.hero-owner{font-size:14px}.hero-owner>span{font-size:10px}.hero-title-first{top:14%}.hero-title-second{top:49%}.hero-art{width:min(74vw,900px)}.hero-footer{bottom:18px}.hero-signature{font-size:13px}.hero-explore{min-height:48px;font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.hero-fluid{display:none}.hero-title-first,.hero-title-second{transform:none!important;will-change:auto}.hero-explore,.hero-explore .icon{transition:none}}
-@media print{.hero-sticky{height:auto;min-height:0}.hero-scene{position:relative;overflow:visible;background:white}.hero-art,.hero-fluid,.hero-footer,.hero-topline{display:none}.hero-heading{position:relative;height:auto;padding-block:30px}.hero-heading h1{font-size:60px;line-height:1.1;color:black}.hero-title-first,.hero-title-second{position:static;transform:none!important;display:block;white-space:normal}.hero-title-second em{color:inherit}}
+@media print{.hero-sticky{height:auto;min-height:0}.hero-scene{position:relative;overflow:visible;background:white}.hero-art,.hero-fluid,.hero-footer,.hero-showcase-topline{display:none}.hero-heading{position:relative;height:auto;padding-block:30px}.hero-heading h1{font-size:60px;line-height:1.1;color:black}.hero-title-first,.hero-title-second{position:static;transform:none!important;display:block;white-space:normal}.hero-title-second em{color:inherit}}
