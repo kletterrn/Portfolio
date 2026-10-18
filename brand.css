@@ -1,8 +1,8 @@
-/* A single DK monogram: a blue spine and a K cut through the D. */
-.wordmark{display:inline-flex;align-items:center;justify-content:center;min-width:52px;min-height:44px;letter-spacing:0;line-height:1;flex:none}
-.wordmark img{display:block;width:48px;height:auto;max-width:none}
-.footer .wordmark img{width:40px}
+/* A custom lowercase dk ligature with one shared stem and a blue full stop. */
+.wordmark{display:inline-flex;align-items:center;justify-content:center;min-width:66px;min-height:44px;letter-spacing:0;line-height:1;flex:none}
+.wordmark img{display:block;width:66px;height:auto;max-width:none}
+.footer .wordmark img{width:54px}
 .about-stamp{font-size:0;letter-spacing:0;line-height:1}
-.about-stamp>img{width:124px;height:auto;opacity:.9}
+.about-stamp>img{width:152px;height:auto;opacity:.9}
 .about-stamp>small{font:8px/1.7 var(--mono);letter-spacing:.04em;margin-top:20px;color:var(--muted)}
-@media(max-width:760px){.wordmark img{width:42px}.wordmark{min-width:44px}.footer .wordmark img{width:36px}}
+@media(max-width:760px){.wordmark img{width:54px}.wordmark{min-width:54px}.footer .wordmark img{width:46px}}
