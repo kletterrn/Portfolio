@@ -32,3 +32,9 @@
 @media(max-width:360px){.security-project-choice strong{font-size:15px}.security-choice-meta{font-size:6.5px;gap:6px}.security-project-choice{padding-inline:11px}}
 @media(prefers-reduced-motion:reduce){.security-project-choice,.security-project-choice::after,.security-choice-arrow{transition:none}.security-browser.is-ready .security-project-stage>.work-item:not([hidden]) .project-title{animation:none}}
 @media print{.security-project-index,.security-browser-heading{display:none}.security-project-stage>.work-item[hidden]{display:block!important}.security-project-stage>.work-item{margin-bottom:30px!important}.security-project-stage .project-title{animation:none!important}}
+
+/* Explicit two-line title with enough space for the complete second line. */
+#cybersecurity>.section-heading{grid-template-columns:minmax(130px,.55fr) minmax(0,1.65fr) minmax(130px,.55fr);gap:clamp(20px,3vw,45px)}
+#security-title>.security-heading-line{display:block;white-space:nowrap}
+#security-title>.security-heading-line:first-child{color:var(--text)}
+@media(max-width:760px){#cybersecurity>.section-heading{grid-template-columns:1fr 1fr;gap:18px}#security-title{grid-column:1/-1;font-size:clamp(38px,9.6vw,65px)}#cybersecurity>.section-heading>p:last-child{grid-column:1/-1;justify-self:start;text-align:left;max-width:none}}

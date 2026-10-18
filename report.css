@@ -1,0 +1,13 @@
+/* Readable source documents; downloadable originals retain their original bytes. */
+.source-detail .report-document{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(20px,3vw,36px);margin:12px 0 24px;font:15px/1.8 var(--font);color:var(--text-secondary);overflow-wrap:anywhere;min-width:0}
+.source-detail .report-document h3{font-size:clamp(23px,2.5vw,31px);line-height:1.15;letter-spacing:-.025em;font-weight:550;color:var(--text);margin:0 0 28px;max-width:30ch}
+.source-detail .report-document h4{font-size:19px;line-height:1.4;letter-spacing:-.015em;font-weight:550;color:var(--text);padding-top:24px;margin:28px 0 16px;border-top:1px solid var(--line)}
+.source-detail .report-document h5{font-size:15px;line-height:1.6;font-weight:550;color:var(--text);margin:23px 0 9px}
+.source-detail .report-document p{font-size:15px;line-height:1.8;margin:14px 0;max-width:72ch}
+.source-detail .report-document strong{font-weight:550;color:var(--text)}
+.source-detail .report-document ul,.source-detail .report-document ol{margin:16px 0;padding-left:24px;font-size:15px;line-height:1.8;max-width:72ch}
+.source-detail .report-document li{padding-left:4px}.source-detail .report-document li+li{margin-top:10px}.source-detail .report-document li::marker{color:var(--accent-soft)}
+.source-detail .report-document hr{border:0;border-top:1px solid var(--line);margin:28px 0}.source-detail .report-document hr+h4{border:0;padding-top:0}
+.source-detail .report-document>:last-child{margin-bottom:0}
+@media(max-width:760px){.source-detail .report-document{padding:20px 18px}.source-detail .report-document h3{font-size:25px}.source-detail .report-document h4{font-size:18px;margin-top:25px;padding-top:20px}.source-detail .report-document p,.source-detail .report-document ul,.source-detail .report-document ol,.source-detail .report-document h5{font-size:14px}.source-detail .report-document ul,.source-detail .report-document ol{padding-left:20px}}
+@media print{.source-detail .report-document{background:white;color:black;border-color:#bbb;padding:20px}.source-detail .report-document h3,.source-detail .report-document h4,.source-detail .report-document h5,.source-detail .report-document strong{color:black}.source-detail .report-document h3,.source-detail .report-document h4,.source-detail .report-document h5{break-after:avoid}.source-detail .report-document p,.source-detail .report-document li{orphans:3;widows:3}}
