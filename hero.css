@@ -57,7 +57,7 @@
 @media print{.hero-fluid,.hero-editorial-index,.hero-editorial-foot,.code-actions{display:none}.hero-editorial-inner{min-height:0;padding-block:25px}.hero-editorial-title{font-size:55px;margin-block:35px;transform:none!important}.hero-title-live>span{animation:none}.hero-editorial-word{color:inherit}.hero-editorial-word svg{display:none}.hero-editorial-lower{display:block}.hero-editorial-intro>p{color:inherit}.hero-editorial-mast p>span,.hero-editorial-discipline{color:inherit}}
 
 /* A quiet contour study sits behind the typography; its bounds never mask the mouse field. */
-.hero-contour{position:absolute;z-index:0;top:-8%;right:-20%;width:min(102vw,1400px);max-width:none;height:auto;pointer-events:none;opacity:.48;transform:rotate(-12deg);mask-image:linear-gradient(90deg,transparent,black 24%,black 84%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,black 24%,black 84%,transparent)}
+.hero-contour{position:absolute;z-index:0;top:-8%;right:-20%;width:min(102vw,1400px);max-width:none;height:auto;pointer-events:none;opacity:.48;transform:rotate(-12deg);mask-image:linear-gradient(90deg,transparent,black 24%,black 84%,transparent),linear-gradient(to bottom,black 20%,transparent 75%);mask-composite:intersect;-webkit-mask-image:linear-gradient(90deg,transparent,black 24%,black 84%,transparent),linear-gradient(to bottom,black 20%,transparent 75%);-webkit-mask-composite:source-in}
 .hero-type-caret{display:inline-block;width:.025em;height:.72em;margin-left:.055em;background:var(--accent-soft);vertical-align:baseline;opacity:0;pointer-events:none}
 .is-editing .hero-type-caret{opacity:.8}
 .hero-title-live .hero-editorial-word svg{transition:opacity .2s}
