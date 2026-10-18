@@ -22,3 +22,5 @@
 @media(max-width:359px){.code-content{padding-inline:18px}.code-title{font-size:14vw}.code-actions{gap:18px}.code-meta{font-size:7px}.code-footer>span:first-child{display:none}}
 @media(prefers-reduced-motion:reduce){.code-scroll .icon{animation:none}.code-primary{transition:none}}
 @media print{.code-field{display:none}.code-hero{background:white;color:black;min-height:0}.code-title{font-size:70px}.code-title em{color:#333}.code-content{padding:30px}.code-footer{display:none}}
+
+.code-meta,.code-footer{width:calc(100% - var(--gutter)*2)}
