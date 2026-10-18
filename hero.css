@@ -17,8 +17,9 @@
 .hero-explore:hover{background:var(--accent-soft);border-color:var(--accent-soft)}
 .hero-explore .icon{width:16px;height:17px;transition:transform .2s}
 .hero-explore:hover .icon{transform:translate(2px,-2px)}
-.hero-cv{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:52px;padding:0 18px;border:1px solid var(--line-accent);border-radius:5px;background:transparent;color:var(--text);font-size:14px;text-decoration:none;transition:background .2s,border-color .2s,color .2s}
-.hero-cv:hover{color:var(--accent-soft);border-color:var(--accent-soft);background:var(--surface)}
+.hero-cv{display:inline-flex;align-items:center;justify-content:flex-start;gap:12px;min-height:44px;padding:0;border:0;border-radius:0;background:none;color:var(--text);font-size:14px;text-decoration:none;transition:color .2s}
+.hero-cv>span{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.hero-cv:hover{color:var(--accent-soft)}
 .hero-cv .icon{width:16px;height:16px;flex:none;transition:transform .2s}.hero-cv:hover .icon{transform:translate(2px,-2px)}
 .hero-editorial-index{border-top:1px solid var(--line)}
 .hero-editorial-index>a{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:53px;border-bottom:1px solid var(--line);font-size:15px;transition:color .2s}
@@ -123,6 +124,6 @@
  .hero-crystal{left:66%;top:49%;width:125vw;transform:translate(-50%,-50%)}
  .hero-scroll-meter{display:none}
 }
-@media(max-width:760px){.code-actions{gap:12px}.hero-explore{gap:18px;padding-inline:15px}.hero-cv{gap:12px;min-height:50px;padding-inline:13px;font-size:13px}}
-@media(max-width:350px){.code-actions{display:grid;grid-template-columns:1fr;gap:10px}.hero-explore,.hero-cv{width:100%;justify-content:space-between}}
+@media(max-width:760px){.code-actions{gap:12px}.hero-explore{gap:18px;padding-inline:15px}.hero-cv{gap:12px;min-height:44px;padding-inline:0;font-size:13px}}
+@media(max-width:350px){.code-actions{display:grid;grid-template-columns:1fr;gap:10px}.hero-explore{width:100%;justify-content:space-between}.hero-cv{justify-self:start;width:auto;justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){.hero-cv,.hero-cv .icon{transition:none}}
