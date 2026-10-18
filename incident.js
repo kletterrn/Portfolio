@@ -18,13 +18,13 @@
   }
   function select(index){
     stop();active=index;
-    buttons.forEach((button,i)=>{button.checked=index===i;});
+    buttons.forEach((button,i)=>button.setAttribute('aria-pressed',String(index===i)));
     exhibit.querySelector('[data-request-time]').textContent=attempts[index][0];
     exhibit.querySelector('[data-response-time]').textContent=attempts[index][1];
     exhibit.querySelector('[data-response-length]').textContent=attempts[index][2];
     status.textContent='Attempt '+(index+1)+': a DNS query over UDP is followed by an ICMP port-unreachable message. No DNS answer is shown.';
   }
-  buttons.forEach((button,index)=>button.addEventListener('change',()=>{if(button.checked)select(index);}));
+  buttons.forEach((button,index)=>button.addEventListener('click',()=>select(index)));
   replay.addEventListener('click',()=>{
     stop();
     if(reduced.matches){status.textContent='Attempt '+(active+1)+': DNS request → server; ICMP port-unreachable → client. Motion is disabled by your device preference.';return;}

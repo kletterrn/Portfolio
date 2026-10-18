@@ -89,7 +89,13 @@
     header?.classList.toggle('scrolled',scrollY>15);
     const max=document.documentElement.scrollHeight-innerHeight;
     document.documentElement.style.setProperty('--progress',max>0?Math.max(0,Math.min(1,scrollY/max)):0);
-
+    if(!reduced.matches && fine.matches)panels.forEach(panel=>{
+      const rect=panel.getBoundingClientRect();
+      if(rect.bottom>0 && rect.top<innerHeight){
+        const offset=Math.max(-15,Math.min(15,(innerHeight/2-rect.top-rect.height/2)*.035));
+        panel.style.setProperty('--image-parallax',`${offset.toFixed(1)}px`);
+      }
+    });
   }
   function scheduleScroll(){if(!scrollFrame)scrollFrame=requestAnimationFrame(updateScroll);}
   addEventListener('scroll',scheduleScroll,{passive:true});
@@ -97,6 +103,28 @@
   addEventListener('pageshow',scheduleScroll);
   reduced.addEventListener('change',scheduleScroll);
   updateScroll();
+
+  panels.forEach(panel=>{
+    const cursor=panel.querySelector('.project-hover');
+    let frame=0;
+    panel.addEventListener('pointermove',event=>{
+      if(event.pointerType==='touch' || !fine.matches || reduced.matches || innerWidth<=760 || !cursor){resetCursor();return;}
+      const rect=panel.getBoundingClientRect();
+      const x=event.clientX-rect.left;
+      const y=event.clientY-rect.top;
+      cancelAnimationFrame(frame);
+      frame=requestAnimationFrame(()=>{panel.style.setProperty('--spot-x',`${x}px`);panel.style.setProperty('--spot-y',`${y}px`);cursor.style.left=`${x}px`;cursor.style.top=`${y}px`;panel.classList.add('pointer-active');});
+    });
+    function resetCursor(){cancelAnimationFrame(frame);frame=0;panel.classList.remove('pointer-active');}
+    panel.addEventListener('pointerleave',resetCursor);
+    panel.addEventListener('pointercancel',resetCursor);
+    panel.addEventListener('focusin',resetCursor);
+    reduced.addEventListener('change',resetCursor);fine.addEventListener('change',resetCursor);
+    addEventListener('resize',resetCursor,{passive:true});
+    addEventListener('scroll',resetCursor,{passive:true});
+    addEventListener('blur',resetCursor);
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)resetCursor();});
+  });
 
   document.querySelectorAll('.cap-list details').forEach(detail=>{
     detail.addEventListener('toggle',()=>{
@@ -116,8 +144,7 @@
         clearTimeout(resetTimer);
         resetTimer=setTimeout(()=>{if(label)label.textContent='Copy email';},2500);
       }catch{
-        clearTimeout(resetTimer);if(label)label.textContent='Copy email';
-        if(status)status.textContent='Copy unavailable. Select davidkhaliqi05@gmail.com to copy it manually, or use the email link to open your email app.';
+        if(status)status.textContent='Select the address to copy it, or click it to open your email app.';
       }
     });
   });

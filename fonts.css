@@ -3,68 +3,68 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-0.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-0.ttf) format('truetype');
 }
 @font-face {
   font-family: 'DM Mono';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-1.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-1.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Instrument Serif';
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-2.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-2.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Instrument Serif';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-3.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-3.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-4.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-4.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-5.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-5.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-6.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-6.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-7.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-7.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-8.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-8.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url(/assets/fonts/portfolio-9.woff2) format('woff2');
+  src: url(/assets/fonts/portfolio-9.ttf) format('truetype');
 }

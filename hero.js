@@ -23,7 +23,7 @@ let a=5/3,l="SF Mono, Consolas, Liberation Mono, ui-monospace, monospace",o=(e,t
   };
   let cleanup=null,visible=true;
   document.querySelector('.header')?.classList.add('ascii-overlay-safe');
-  document.querySelectorAll('.hero-identity,.hero-heading h1,.hero-description,.hero-goal,.hero-actions').forEach(element=>element.classList.add('ascii-overlay-safe'));
+  hero.querySelector('.code-actions')?.classList.add('ascii-overlay-safe');
   function sync(){
     cleanup?.();cleanup=null;
     const ctx=canvas.getContext('2d');
