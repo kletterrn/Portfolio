@@ -1,0 +1,22 @@
+Cybersecurity Incident Report
+
+
+Section 1: Identify the type of attack that may have caused this 
+network interruption
+	One potential explanation for the website's connection timeout error message is:
+A TCP SYN flood attack, which is a type of Denial-of-Service (DoS) attack that overwhelms a server with connection requests, preventing legitimate users from accessing the website.
+The logs show that:
+If the TCP logs show a large number of SYN packets being sent to the server without completing the TCP three-way handshake, this suggests that connection requests are overwhelming the server.
+This event could be:
+A DoS attack intended to disrupt the website's availability. If the malicious traffic originates from multiple systems, it could be a Distributed Denial-of-Service (DDoS) attack.
+	
+
+Section 2: Explain how the attack is causing the website to malfunction
+	When website visitors try to establish a connection with the web server, a three-way handshake occurs using the TCP protocol. Explain the three steps of the handshake:
+1. SYN: The client sends a SYN packet to the server to request a connection.
+2. SYN-ACK: The server responds with a SYN-ACK packet to acknowledge the request and indicate that it is ready to establish the connection.
+3. ACK: The client sends an ACK packet back to the server, completing the handshake and establishing the TCP connection.
+Explain what happens when a malicious actor sends a large number of SYN packets all at once:
+The server attempts to respond to each SYN packet and waits for the final ACK to complete the connection. If too many requests remain incomplete, they can fill the server's connection queue and consume resources. This prevents legitimate users from establishing new connections, causing delays or connection timeouts.
+Explain what the logs indicate and how that affects the server:
+Repeated SYN packets without completed TCP handshakes would suggest a possible SYN flood attack. The large number of incomplete connections can overwhelm the server's capacity to handle new connections, making the website slow or temporarily unavailable to legitimate visitors.

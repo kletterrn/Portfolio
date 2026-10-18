@@ -4,6 +4,7 @@
  if(!hero||!stage||!art||!field)return;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)'),mobile=matchMedia('(max-width: 760px)'),fine=matchMedia('(hover: hover) and (pointer: fine)');
  let frame=0,visible=true,workVisible=false,pointer=null,lastMaskKey='';
+ hero.classList.add('hero-scroll-ready');
  const outline='M1191 17 L1179 49 L1104 176 L988 333 L884 441 L1134 644 L1138 654 L1107 665 L809 739 L547 866 L323 998 L331 981 L699 422 L668 386 L513 235 L513 230 L540 225 L824 194 L890 157 Z';
  function measure(){
   if(!visible||!fine.matches||reduced.matches)return;
@@ -17,15 +18,16 @@
  function render(){
   frame=0;
   const top=document.querySelector('.header')?.getBoundingClientRect().bottom||0,rect=hero.getBoundingClientRect();
-  const progress=reduced.matches||mobile.matches?0:Math.max(0,Math.min(1,(top-rect.top)/Math.max(1,rect.height)));
+  const progress=reduced.matches||mobile.matches?0:Math.max(0,Math.min(1,(top-rect.top)/Math.max(1,rect.height-stage.offsetHeight)));
   hero.style.setProperty('--hero-progress',progress.toFixed(4));
   const eased=progress*progress*(3-2*progress);
-  hero.style.setProperty('--crystal-scroll-y',`${(-eased*64).toFixed(2)}px`);
-  hero.style.setProperty('--crystal-scroll-scale',(1-eased*.08).toFixed(4));
+  hero.style.setProperty('--crystal-scroll-y',`${(-eased*28).toFixed(2)}px`);
+  hero.style.setProperty('--crystal-scroll-scale',(1-eased*.1).toFixed(4));
+  /* Work remains in normal flow; the animation is contained in the hero. */
   if(work){const start=(innerHeight-work.getBoundingClientRect().top)/Math.max(1,innerHeight*.65),entry=reduced.matches||mobile.matches?1:Math.max(0,Math.min(1,start));work.style.setProperty('--work-entry',(entry*entry*(3-2*entry)).toFixed(4));}
   measure();
   if(pointer&&fine.matches&&!reduced.matches&&!mobile.matches){
-   const x=Math.max(0,Math.min(1,pointer.x/Math.max(1,rect.width))),y=Math.max(0,Math.min(1,(pointer.y-rect.top)/Math.max(1,rect.height)));
+   const x=Math.max(0,Math.min(1,pointer.x/Math.max(1,rect.width))),y=Math.max(0,Math.min(1,(pointer.y-stage.getBoundingClientRect().top)/Math.max(1,stage.offsetHeight)));
    art.style.setProperty('--crystal-light-x',`${(47+x*18).toFixed(2)}%`);art.style.setProperty('--crystal-light-y',`${(31+y*27).toFixed(2)}%`);
   }
  }

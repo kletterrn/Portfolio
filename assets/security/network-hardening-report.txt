@@ -1,0 +1,15 @@
+Security risk assessment report 
+
+
+Part 1: Select up to three hardening tools and methods to implement
+	1. Firewall maintenance
+2. Multifactor authentication
+3. Penetration Test
+	
+
+Part 2: Explain your recommendations
+	The organization should establish firewall rules to filter incoming and outgoing network traffic. Only necessary and authorized connections should be allowed, while potentially dangerous or suspicious traffic should be blocked. Firewall configurations should also be reviewed and updated regularly to address new security threats.
+Implementing MFA would add another layer of security by requiring users to verify their identity using a second authentication method, such as an authenticator app or security key. Even if an attacker obtains an employee's password, MFA can prevent them from accessing the account without the additional verification.
+I would recommend conducting regular penetration tests to identify additional security vulnerabilities within the organization's network. The security team can then use the findings to prioritize updates, apply security patches, and fix weaknesses to minimize the attack surface and reduce the risk of future attacks and data breaches.
+Conclusion:
+Implementing firewall rules, MFA, and regular penetration testing will strengthen the organization's security, reduce vulnerabilities, and help prevent future attacks and data breaches.

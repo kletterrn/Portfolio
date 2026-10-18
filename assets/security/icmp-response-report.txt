@@ -1,0 +1,28 @@
+Incident report analysis
+Instructions
+As you continue through this course, you may use this template to record your findings after completing an activity or to take notes on what you've learned about a specific tool or concept. You can also use this chart as a way to practice applying the NIST framework to different situations you encounter.
+Summary
+	The organization experienced a Denial-of-Service (DoS) attack that disrupted its internal network for two hours. A malicious actor flooded the network with ICMP packets through an improperly configured firewall, overwhelming network services and preventing employees from accessing resources.
+	Identify
+	The organization's internal network services were unavailable for two hours due to a flood of ICMP packets from a malicious actor. The investigation identified an improperly configured firewall as the main vulnerability. Only the internal network traffic was affected, and they could not access any network resources. Coworkers needed access to the internal networks to continue their daily business.
+	Protect
+	To prevent events like this from repeating in the future, the network security team implements the following:
+- A new firewall rule to limit the rate of incoming ICMP packets.
+- Source IP address verification on the firewall to check for spoofed IP addresses on incoming ICMP packets.
+- Network monitoring software to detect abnormal traffic patterns.
+- An IDS/IPS system to filter out some ICMP traffic based on suspicious characteristics.
+Regular firewall maintenance should be conducted to prevent similar attacks in the future.
+	Detect
+	Network monitoring software was implemented to identify abnormal traffic patterns and potential attacks. The IDS/IPS system can detect suspicious ICMP traffic and alert the security team. Continuous monitoring will help identify threats earlier and reduce response times.
+	Respond
+	The incident management team blocked incoming ICMP packets, temporarily shut down non-critical network services, and prioritized restoring critical services. The security team investigated the attack and identified the firewall vulnerability. Incident response procedures should be reviewed and improved to minimize future disruptions.
+	Recover
+	The organization restored critical network services after the attack was contained. The security team should verify that all affected services are functioning properly before restoring non-critical services. Regular testing and improved recovery procedures can help reduce downtime during future incidents.
+	
+
+________________
+
+
+
+
+Reflections/Notes: This incident demonstrates the importance of properly configured firewalls, continuous network monitoring, and effective incident response procedures. Applying the NIST CSF can help the organization strengthen its network security and minimize the impact of future attacks.
