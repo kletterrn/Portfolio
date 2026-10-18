@@ -12,8 +12,8 @@
     const top=parseFloat(getComputedStyle(section).getPropertyValue('--header-height'))||0;
     const range=Math.max(1,section.offsetHeight-pane.offsetHeight);
     const progress=reduced.matches?1:clamp((top-rect.top)/range);
-    const outgoing=smooth(.07,.58,progress);
-    const incoming=smooth(.38,.87,progress);
+    const outgoing=smooth(.1,.8,progress);
+    const incoming=outgoing;
     section.style.setProperty('--hero-progress',progress.toFixed(4));
     section.style.setProperty('--idea-opacity',(1-outgoing).toFixed(4));
     section.style.setProperty('--idea-shift',(-outgoing*65).toFixed(2)+'px');
