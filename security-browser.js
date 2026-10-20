@@ -63,7 +63,7 @@
  function followHash(initial=false){
   const index=panels.findIndex(panel=>`#${panel.id}`===location.hash);
   if(index<0){
-   const collectionOnly=['#project-syn-flood','#project-website-compromise','#project-network-hardening','#project-icmp-response'];
+   const collectionOnly=['#project-botium','#project-dns','#project-syn-flood','#project-website-compromise','#project-network-hardening','#project-icmp-response'];
    if(browser.hasAttribute('data-security-featured')&&collectionOnly.includes(location.hash)){location.replace('/cybersecurity/'+location.hash);return;}
    if(initial)select(0,false,'initial');return;
   }
