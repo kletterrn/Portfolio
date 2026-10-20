@@ -26,7 +26,7 @@
 .hero-editorial-index>a>span:last-child{font-size:19px;transition:transform .2s}
 .hero-editorial-index>a:hover{color:var(--accent-soft)}
 .hero-editorial-index>a:hover>span:last-child{transform:translate(2px,-2px)}
-.hero-editorial-foot{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:44px;font:10px/1.5 var(--mono);color:var(--muted)}
+.hero-editorial-foot{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:44px;font:12px/1.5 var(--mono);color:var(--muted)}
 .hero-editorial-foot>a{display:inline-flex;align-items:center;gap:30px;min-height:44px;color:var(--text)}
 .hero-editorial-foot>a>span{font:20px/1 var(--font)}
 .hero-editorial-foot>a:hover{color:var(--accent-soft)}
@@ -45,7 +45,7 @@
  .hero-editorial-intro>p{font-size:17px;line-height:1.55;max-width:36ch}
  .code-actions{margin-top:24px;gap:24px}.hero-explore{font-size:13px;min-height:50px;padding:0 17px;gap:22px}.hero-cv{font-size:13px;gap:12px}
  .hero-editorial-index{margin-top:0}.hero-editorial-index>a{min-height:49px;font-size:14px}
- .hero-editorial-foot{margin-top:26px;gap:18px;font-size:9px;align-items:center}.hero-editorial-foot>span{max-width:24ch}.hero-editorial-foot>a{gap:18px;font-size:9px;white-space:nowrap}
+ .hero-editorial-foot{margin-top:26px;gap:18px;font-size:12px;align-items:center}.hero-editorial-foot>span{max-width:24ch}.hero-editorial-foot>a{gap:18px;font-size:12px;white-space:nowrap}
  .hero-fluid{display:none}.cinema-work{padding-top:38px}
 }
 @media(max-width:350px){.hero-editorial-title{font-size:40px}.code-actions{gap:20px}.hero-explore{gap:15px;padding-inline:14px}.hero-editorial-foot>a{gap:10px}}
@@ -127,3 +127,4 @@
 @media(max-width:760px){.code-actions{gap:12px}.hero-explore{gap:18px;padding-inline:15px}.hero-cv{gap:12px;min-height:44px;padding-inline:0;font-size:13px}}
 @media(max-width:350px){.code-actions{display:grid;grid-template-columns:1fr;gap:10px}.hero-explore{width:100%;justify-content:space-between}.hero-cv{justify-self:start;width:auto;justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){.hero-cv,.hero-cv .icon{transition:none}}
+

@@ -4,5 +4,6 @@
 .footer .wordmark img{width:54px}
 .about-stamp{font-size:0;letter-spacing:0;line-height:1}
 .about-stamp>img{width:152px;height:auto;opacity:.9}
-.about-stamp>small{font:8px/1.7 var(--mono);letter-spacing:.04em;margin-top:20px;color:var(--muted)}
+.about-stamp>small{font:12px/1.7 var(--mono);letter-spacing:.04em;margin-top:20px;color:var(--muted)}
 @media(max-width:760px){.wordmark img{width:54px}.wordmark{min-width:54px}.footer .wordmark img{width:46px}}
+

@@ -62,7 +62,11 @@
  });
  function followHash(initial=false){
   const index=panels.findIndex(panel=>`#${panel.id}`===location.hash);
-  if(index<0){if(initial)select(0,false,'initial');return;}
+  if(index<0){
+   const collectionOnly=['#project-syn-flood','#project-website-compromise','#project-network-hardening','#project-icmp-response'];
+   if(browser.hasAttribute('data-security-featured')&&collectionOnly.includes(location.hash)){location.replace('/cybersecurity/'+location.hash);return;}
+   if(initial)select(0,false,'initial');return;
+  }
   select(index);
   requestAnimationFrame(()=>panels[index].scrollIntoView({block:'start',behavior:'instant'}));
  }
@@ -78,3 +82,4 @@
  if('IntersectionObserver' in window){new IntersectionObserver(entries=>{visible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.25;sync();},{threshold:.25}).observe(stage);}
  else{visible=true;sync();}
 })();
+
