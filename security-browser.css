@@ -18,9 +18,6 @@
 .security-project-choice:focus-visible{outline:2px solid var(--focus);outline-offset:4px;z-index:2;border-radius:1px}
 .security-project-stage>.work-item[hidden]{display:none!important}
 .security-project-stage>.work-item{margin:0!important;scroll-margin-top:110px}
-/* Keep the minimum card height from transferring through its aspect ratio into an oversized width. */
-.security-project-stage,.security-project-stage>.work-item{min-width:0}
-.security-project-stage .project-panel{width:100%;min-width:0;max-width:100%}
 .security-project-stage .project-details{min-height:94px}
 .security-browser.is-ready .security-project-stage>.work-item:not([hidden]) .project-title{animation:security-project-enter .32s cubic-bezier(.22,1,.36,1) both}
 @keyframes security-project-enter{from{opacity:.3;translate:0 8px}to{opacity:1;translate:0 0}}
@@ -49,5 +46,4 @@
 .security-rotation-toggle:hover{color:var(--text);border-color:var(--accent-soft)}
 .security-rotation-toggle:focus-visible{outline:2px solid var(--focus);outline-offset:4px}
 @media(max-width:760px){#cybersecurity>.section-heading{row-gap:18px}#security-title{grid-column:1/-1;font-size:clamp(38px,9.6vw,65px)}#cybersecurity>.section-heading>p:last-child{grid-column:1/-1;grid-row:auto}.security-browser-actions{gap:10px}.security-rotation-toggle{font-size:12px;padding-inline:10px}}
-
 

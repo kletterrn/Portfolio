@@ -4,27 +4,22 @@
   const header = document.querySelector('.header');
   const menu = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#navigation');
-  // Collapse the mobile navigation only after its controls are operational.
-  // Without JavaScript, the links remain visible and the menu button stays hidden.
-  if (header && menu && nav) {
-    function closeMenu(restore = false) {
-      const wasOpen = menu.getAttribute('aria-expanded') === 'true';
-      menu.setAttribute('aria-expanded','false');
-      header.classList.remove('menu-open');
-      if (restore && wasOpen) menu.focus();
-    }
-    menu.addEventListener('click',() => {
-      const opening = menu.getAttribute('aria-expanded') !== 'true';
-      menu.setAttribute('aria-expanded',String(opening));
-      header.classList.toggle('menu-open',opening);
-      if (opening) nav.querySelector('a')?.focus();
-    });
-    nav.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu();});
-    document.addEventListener('click',event=>{if(!header.contains(event.target))closeMenu();});
-    document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu(true);});
-    matchMedia('(min-width: 761px)').addEventListener('change',()=>closeMenu());
-    header.classList.add('nav-ready');
+  function closeMenu(restore = false) {
+    const wasOpen = menu?.getAttribute('aria-expanded') === 'true';
+    menu?.setAttribute('aria-expanded','false');
+    header?.classList.remove('menu-open');
+    if (restore && wasOpen) menu.focus();
   }
+  menu?.addEventListener('click',() => {
+    const opening = menu.getAttribute('aria-expanded') !== 'true';
+    menu.setAttribute('aria-expanded',String(opening));
+    header.classList.toggle('menu-open',opening);
+    if (opening) nav?.querySelector('a')?.focus();
+  });
+  nav?.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu();});
+  document.addEventListener('click',event=>{if(!header?.contains(event.target))closeMenu();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu(true);});
+  matchMedia('(min-width: 761px)').addEventListener('change',()=>closeMenu());
 
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver(entries=>{
@@ -190,4 +185,3 @@ document.querySelectorAll('.sound-player').forEach(player => {
   audio.addEventListener('ended', () => { player.classList.remove('is-playing'); status.textContent = 'PLAY AGAIN'; update(); });
   audio.addEventListener('error', () => { status.textContent = 'AUDIO UNAVAILABLE'; });
 });
-
