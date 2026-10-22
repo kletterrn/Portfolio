@@ -1,4 +1,4 @@
-/* Six-second rotation pauses for reading, manual selection, reduced motion and hidden views. */
+/* Manual browsing by default. Optional rotation pauses whenever the reader interacts. */
 (() => {
  const browser=document.querySelector('[data-security-browser]');
  if(!browser)return;
@@ -6,7 +6,7 @@
  const panels=choices.map(choice=>document.getElementById(choice.dataset.securityTarget));
  if(!list||!choices.length||!stage||panels.some(panel=>!panel))return;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)'),intervalMs=6000;
- let selected=-1,paused=reduced.matches,hovered=false,visible=false,timer=null,due=0,remaining=intervalMs;
+ let selected=-1,paused=true,hovered=false,visible=false,timer=null,due=0,remaining=intervalMs;
  list.setAttribute('role','tablist');list.setAttribute('aria-orientation','horizontal');
  choices.forEach((choice,index)=>{
   choice.setAttribute('role','tab');choice.setAttribute('aria-controls',panels[index].id);
@@ -82,4 +82,5 @@
  if('IntersectionObserver' in window){new IntersectionObserver(entries=>{visible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.25;sync();},{threshold:.25}).observe(stage);}
  else{visible=true;sync();}
 })();
+
 

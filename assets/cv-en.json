@@ -56,7 +56,7 @@
       "title": "ADA Bootcamp September 2026",
       "organization": "Azubi Digital Akademie",
       "period": "31 Aug – 25 Sep 2026 · Completed · 120 hours",
-      "details": "HTML and CSS for building a personal portfolio website\nPython fundamentals and object-oriented programming\nPlanning and developing an app or web app using prototyping and agile methods\nFinal project “Project Ignis”: automated analysis of burned areas using NASA satellite imagery\nSuccessful participation confirmed by the certificate issued on 29 September 2026"
+      "details": "HTML and CSS for building a personal portfolio website\nPython fundamentals and object-oriented programming\nPlanning and developing an app or web app using prototyping and agile methods\nFinal project “Project Ignis”: developed an application to display and explore NASA FIRMS heat observations on a map; continued independently after the bootcamp\nSuccessful participation confirmed by the certificate issued on 29 September 2026"
     },
     {
       "title": "OpenAI Build Week · Hackathon",
@@ -82,5 +82,6 @@
       "title": "Languages",
       "details": "English · B2"
     }
-  ]
+  ],
+  "updated": "2026-10-23"
 }

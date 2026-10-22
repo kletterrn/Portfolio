@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "output_dir": "assets/styles",
+  "font_stylesheet": "fonts.css",
+  "exclude_dirs": [
+    ".git",
+    "node_modules",
+    "preview-public"
+  ],
+  "pages": {
+    "404.html": [
+      "styles.css",
+      "brand.css",
+      "engineering.css"
+    ],
+    "cv/en/index.html": [
+      "styles.css",
+      "cv.css",
+      "brand.css",
+      "engineering.css"
+    ],
+    "cv/index.html": [
+      "styles.css",
+      "cv.css",
+      "brand.css",
+      "engineering.css"
+    ],
+    "cybersecurity/index.html": [
+      "styles.css",
+      "hero.css",
+      "audit.css",
+      "portfolio.css",
+      "incident.css",
+      "brand.css",
+      "security.css",
+      "security-browser.css",
+      "engineering.css"
+    ],
+    "datenschutz/index.html": [
+      "styles.css",
+      "brand.css",
+      "engineering.css"
+    ],
+    "impressum/index.html": [
+      "styles.css",
+      "brand.css",
+      "engineering.css"
+    ],
+    "index.html": [
+      "styles.css",
+      "hero.css",
+      "audit.css",
+      "portfolio.css",
+      "incident.css",
+      "brand.css",
+      "security.css",
+      "security-browser.css",
+      "engineering.css",
+      "portfolio-refinement.css"
+    ],
+    "work/botium-audit/index.html": [
+      "styles.css",
+      "audit.css",
+      "brand.css",
+      "engineering.css"
+    ],
+    "work/botium-audit/scope-report/index.html": [
+      "styles.css",
+      "audit.css",
+      "brand.css",
+      "engineering.css"
+    ],
+    "work/dns-incident/index.html": [
+      "styles.css",
+      "incident.css",
+      "brand.css",
+      "report.css",
+      "engineering.css"
+    ],
+    "work/icmp-response/index.html": [
+      "styles.css",
+      "incident.css",
+      "security.css",
+      "brand.css",
+      "report.css",
+      "engineering.css"
+    ],
+    "work/ignis/index.html": [
+      "styles.css",
+      "brand.css",
+      "engineering.css",
+      "case-refinement.css"
+    ],
+    "work/network-hardening/index.html": [
+      "styles.css",
+      "incident.css",
+      "security.css",
+      "brand.css",
+      "report.css",
+      "engineering.css"
+    ],
+    "work/orion/index.html": [
+      "styles.css",
+      "brand.css",
+      "engineering.css",
+      "case-refinement.css"
+    ],
+    "work/syn-flood/index.html": [
+      "styles.css",
+      "incident.css",
+      "security.css",
+      "brand.css",
+      "report.css",
+      "engineering.css"
+    ],
+    "work/website-compromise/index.html": [
+      "styles.css",
+      "incident.css",
+      "security.css",
+      "brand.css",
+      "report.css",
+      "engineering.css"
+    ]
+  }
+}

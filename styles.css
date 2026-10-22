@@ -195,10 +195,10 @@
  :root{--gutter:clamp(18px,5vw,30px)}
  html{scroll-padding-top:85px}body{overflow-wrap:break-word}
  .header-inner{height:72px;gap:20px}.header-role{font-size:12px}.menu-toggle{min-height:44px;font-size:13px}.navigation{top:72px;background:#10131afa;max-height:calc(100svh - 72px);overflow-y:auto;box-shadow:0 20px 35px #0006}.navigation a{font-size:24px;width:100%;justify-content:flex-start;min-height:52px}
- .section-heading{grid-template-columns:minmax(0,1fr);gap:18px}.section-heading h2{font-size:clamp(42px,12vw,66px)}.section-heading>p:last-child{max-width:28ch;text-align:left;justify-self:start;font-size:14px}.section-heading>p:last-child br{display:none}
+ .section-heading{grid-template-columns:minmax(0,1fr);gap:18px}.section-heading h2{font-size:clamp(42px,12vw,66px)}.section-heading>p:last-child{max-width:28ch;text-align:left;justify-self:start;font-size:14px}
  .project-panel,.project-orion{display:flex;flex-direction:column;aspect-ratio:auto;min-height:0;padding:22px 20px;gap:24px;border-radius:16px}
  .project-panel-head{position:static;gap:12px;align-items:flex-start;flex-wrap:wrap}.project-panel-head>.label,.project-orion .project-panel-head>.label{font-size:12px;flex:1 1 130px}.project-state,.project-orion .project-state{font-size:12px;flex:none;max-width:100%;padding:5px 8px}
- .project-title,.project-orion .project-title{position:static;width:auto;min-width:0}.project-title>p,.project-orion .project-title>p{font-size:15px;line-height:1.5;margin-bottom:14px}.project-title>p br{display:none}.project-title h3,.project-orion .project-title h3{font-size:clamp(44px,12vw,72px);line-height:.98}
+ .project-title,.project-orion .project-title{position:static;width:auto;min-width:0}.project-title>p,.project-orion .project-title>p{font-size:15px;line-height:1.5;margin-bottom:14px}.project-title h3,.project-orion .project-title h3{font-size:clamp(44px,12vw,72px);line-height:.98}
  .ignis-display,.project-panel:hover .ignis-display{position:relative;inset:auto;width:100%;margin:0;padding:5px;transform:none;transition:none}.browser-bar{height:22px}.browser-bar b{font-size:6px}
  .project-orion .orion-display,.project-orion:hover .orion-display{position:relative;inset:auto;width:100%;margin:-12px 0;transform:none;transition:none;filter:drop-shadow(0 12px 20px #0005)}.project-orion .orion-display img{width:100%;height:auto}.project-orion:before{inset:40% 8% 20%}
  .orion-card-tags{margin-top:16px;gap:8px}.orion-card-tags span{font-size:12px}
@@ -245,3 +245,22 @@ a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .project-details p{color:var(--text-secondary)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+
+
+/* A useful navigation fallback before, or without, JavaScript enhancement. */
+@media screen and (max-width:760px){
+ .header:not(.nav-ready){position:relative}
+ .header:not(.nav-ready) .header-inner{height:auto;min-height:72px;flex-wrap:wrap;padding-block:12px;row-gap:12px}
+ .header:not(.nav-ready) .menu-toggle{display:none}
+ .header:not(.nav-ready) .navigation{display:flex;position:static;flex:1 0 100%;flex-direction:row;flex-wrap:wrap;gap:6px;margin-left:0;max-height:none;padding:0;border:0;border-radius:0;background:none;box-shadow:none;overflow:visible}
+ .header:not(.nav-ready) .navigation a{width:auto;min-height:44px;font-size:15px;padding:10px 12px}
+ .header:not(.nav-ready) .navigation a:last-child{margin-top:0}
+}
+
+/* Keep the five navigation choices on one line at tablet widths. */
+@media (min-width:761px) and (max-width:1050px){
+ .header-inner{gap:24px}
+ .header-role{flex:none}
+ .navigation{gap:2px}
+ .navigation a{padding-inline:12px;white-space:nowrap;flex:none}
+}
