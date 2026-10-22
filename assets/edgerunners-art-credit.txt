@@ -1,0 +1,10 @@
+Asset: edgerunners-city.webp
+Description: Official Cyberpunk: Edgerunners 2 promotional website cover artwork, depicting rain and neon-lit city architecture.
+Original page: https://www.cyberpunk.net/en/edgerunners2
+Original image: https://www.cyberpunk.net/build/images/edgerunners2/cover-pc-81ae3e53.jpg
+Retrieved: 2026-10-23
+Original dimensions: 1920 x 1080 pixels
+Processing: JPEG converted to WebP at original dimensions for delivery. No generative or visual artwork edits.
+Credit: Cyberpunk: Edgerunners 2 promotional artwork, CD PROJEKT RED / respective rights holders.
+Context: Independent fan-made personal portfolio. Not affiliated with or endorsed by CD PROJEKT RED. The site should include a visible artwork credit linking to the original page.
+Generation note: An original background was initially attempted through the built-in image-generation tool, but the tool returned HTTP 400 (unknown parameter: reasoning); no generated image was produced or used.
