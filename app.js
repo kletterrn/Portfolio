@@ -1,5 +1,6 @@
 (() => {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const de = document.documentElement.lang === 'de';
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
   const header = document.querySelector('.header');
   const menu = document.querySelector('.menu-toggle');
@@ -132,6 +133,15 @@
     });
   });
 
+  document.querySelectorAll('[data-lang-switch]').forEach(link=>{
+    link.addEventListener('click',event=>{
+      if(event.metaKey||event.ctrlKey||event.shiftKey||event.button!==0)return;
+      event.preventDefault();
+      link.classList.toggle('is-de');
+      link.querySelectorAll('span').forEach(span=>span.classList.toggle('lang-on'));
+      setTimeout(()=>{location.href=link.href+location.hash;},reduced.matches?0:300);
+    });
+  });
   document.querySelectorAll('[data-copy]').forEach(button=>{
     let resetTimer;
     button.addEventListener('click',async()=>{
@@ -139,12 +149,12 @@
       const label=button.querySelector('span');
       try{
         await navigator.clipboard.writeText('davidkhaliqi05@gmail.com');
-        if(label)label.textContent='Copied!';
-        if(status)status.textContent='Email address copied.';
+        if(label)label.textContent=de?'Kopiert!':'Copied!';
+        if(status)status.textContent=de?'E-Mail-Adresse kopiert.':'Email address copied.';
         clearTimeout(resetTimer);
-        resetTimer=setTimeout(()=>{if(label)label.textContent='Copy email';},2500);
+        resetTimer=setTimeout(()=>{if(label)label.textContent=de?'E-Mail kopieren':'Copy email';},2500);
       }catch{
-        if(status)status.textContent='Select the address to copy it, or click it to open your email app.';
+        if(status)status.textContent=de?'Adresse markieren, um sie zu kopieren, oder anklicken, um das E-Mail-Programm zu öffnen.':'Select the address to copy it, or click it to open your email app.';
       }
     });
   });

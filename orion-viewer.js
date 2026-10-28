@@ -1,5 +1,6 @@
 (() => {
   const stage = document.querySelector('[data-orion-viewer]');
+  const de = document.documentElement.lang === 'de';
   if (!stage) return;
   const canvas = stage.querySelector('canvas');
   const start = stage.querySelector('[data-load-model]');
@@ -35,7 +36,7 @@
   function requestDraw(){ if (!frame && ready) frame=requestAnimationFrame(draw); }
   function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error('Shader unavailable');return s;}
   start.addEventListener('click',async()=>{
-    start.disabled=true;status.textContent='Loading the aircraft…';
+    start.disabled=true;status.textContent=de?'Flugzeug wird geladen …':'Loading the aircraft…';
     try {
       gl=canvas.getContext('webgl2',{alpha:true,antialias:true,powerPreference:'low-power'});
       if(!gl)throw Error('WebGL unavailable');
@@ -49,8 +50,8 @@
       const attributes=[['position',new Int16Array(b,16,count*3),gl.SHORT],['normal',new Int8Array(b,16+count*6,count*3),gl.BYTE],['color',new Uint8Array(b,16+count*9,count*3),gl.UNSIGNED_BYTE]];
       for(const [name,values,type] of attributes){const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,values,gl.STATIC_DRAW);const l=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,3,type,true,0,0);}
       const buffer=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,buffer);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint32Array(b,16+count*12,indexCount),gl.STATIC_DRAW);
-      gl.enable(gl.DEPTH_TEST);gl.clearColor(0,0,0,0);ready=true;controls.hidden=false;stage.classList.add('model-ready');canvas.tabIndex=0;requestDraw();status.textContent='Drag to orbit · Use + / − to zoom';canvas.focus({preventScroll:true});
-    }catch(error){status.textContent='The interactive view could not load. You can still explore the rendered preview.';start.disabled=false;start.textContent='Retry interactive view';}
+      gl.enable(gl.DEPTH_TEST);gl.clearColor(0,0,0,0);ready=true;controls.hidden=false;stage.classList.add('model-ready');canvas.tabIndex=0;requestDraw();status.textContent=de?'Ziehen zum Drehen · + / − zum Zoomen':'Drag to orbit · Use + / − to zoom';canvas.focus({preventScroll:true});
+    }catch(error){status.textContent=de?'Die interaktive Ansicht konnte nicht geladen werden. Die gerenderte Vorschau bleibt verfügbar.':'The interactive view could not load. You can still explore the rendered preview.';start.disabled=false;start.textContent=de?'Interaktive Ansicht erneut laden':'Retry interactive view';}
   });
   let pointer=null;
   canvas.addEventListener('pointerdown',e=>{if(!ready)return;interacted=true;pointer={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging');});
@@ -66,5 +67,5 @@
   new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)requestDraw();}).observe(stage);
   addEventListener('scroll',()=>{if(!interacted&&!reduce.matches)requestDraw();},{passive:true});
   document.addEventListener('visibilitychange',requestDraw);reduce.addEventListener('change',requestDraw);
-  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;stage.classList.remove('model-ready');controls.hidden=true;status.textContent='Interactive graphics paused. Reload the page to try again.';start.hidden=true;});
+  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;stage.classList.remove('model-ready');controls.hidden=true;status.textContent=de?'Interaktive Grafik pausiert. Zum erneuten Versuch die Seite neu laden.':'Interactive graphics paused. Reload the page to try again.';start.hidden=true;});
 })();

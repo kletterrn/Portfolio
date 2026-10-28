@@ -15,8 +15,9 @@
  function paintControl(){
   if(!toggle)return;
   toggle.hidden=false;
-  toggle.setAttribute('aria-label',paused?'Start automatic project rotation':'Pause automatic project rotation');
-  toggle.querySelector('span').textContent=paused?'Play':'Pause';
+  const de=document.documentElement.lang==='de';
+  toggle.setAttribute('aria-label',de?(paused?'Automatischen Projektwechsel starten':'Automatischen Projektwechsel pausieren'):(paused?'Start automatic project rotation':'Pause automatic project rotation'));
+  toggle.querySelector('span').textContent=de?(paused?'Start':'Pause'):(paused?'Play':'Pause');
   toggle.querySelector('path').setAttribute('d',paused?'M6 3l9 7-9 7V3Z':'M6 4v12M13 4v12');
   toggle.dataset.paused=String(paused);
  }

@@ -2,7 +2,7 @@
 (() => {
  const section=document.querySelector('[data-timed-hero]'),firstLine=section?.querySelector('.hero-type-first-line'),secondLine=section?.querySelector('[data-type-second-line]'),first=section?.querySelector('[data-type-first]'),prefix=section?.querySelector('[data-type-prefix]'),second=section?.querySelector('[data-type-second]'),caret=section?.querySelector('[data-type-caret]');
  if(!section||!firstLine||!secondLine||!first||!prefix||!second||!caret)return;
- const reduced=matchMedia('(prefers-reduced-motion: reduce)'),phrases=['A designer’s eye.\nA developer’s curiosity.','David\nKhaliqi.'],introPrefix='A developer’s ';
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)'),de=document.documentElement.lang==='de',phrases=de?['Ein Auge für Design.\nEin Kopf voller Neugier.','David\nKhaliqi.']:['A designer’s eye.\nA developer’s curiosity.','David\nKhaliqi.'],introPrefix=de?'Ein Kopf voller ':'A developer’s ';
  const holdMs=4500,deleteMs=32,typeMs=85,blankMs=260;
  let phrase=0,length=phrases[0].length,phase='hold',timer=null,due=0,remaining=holdMs;
  const rect=section.getBoundingClientRect();let visible=rect.bottom>0&&rect.top<innerHeight;

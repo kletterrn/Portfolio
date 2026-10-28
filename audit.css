@@ -46,7 +46,7 @@
 .project-botium .project-title>p{font-size:15px;line-height:1.45;margin-bottom:27px;color:var(--text-secondary)}
 .project-botium .project-title h3{font-size:clamp(48px,6.3vw,95px);font-weight:650;letter-spacing:-.065em;line-height:.87}
 .project-botium .project-panel-head>.label,.project-botium .project-state{color:inherit}
-.project-botium .project-hover{background:#f3f4eceb;color:#111}
+.project-botium .project-hover{background:#e8ecf5eb;color:#111}
 .botium-foundation{position:absolute;left:47%;top:9%;width:48%;height:81%;margin:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .botium-foundation svg{display:block;width:100%;min-height:0;flex:1;overflow:visible}
 .foundation-note{font:10px var(--mono);letter-spacing:.08em;fill:var(--text-secondary)}
